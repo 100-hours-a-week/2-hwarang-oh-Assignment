@@ -33,11 +33,18 @@ public class Main {
                 // commands.queue();
 
                 // CLI Version
-                System.out.println(UserDataUtil.loadUserData());
+                // System.out.println(UserDataUtil.loadUserData());
                 ContentsUtil contentProcess = new ContentsUtil();
 
                 boolean isStart = contentProcess.startProcess();
-                if (isStart)
-                        contentProcess.loginProcess();
+                if (!isStart)
+                        return;
+                boolean isLogin = contentProcess.loginProcess();
+                if (!isLogin)
+                        return;
+                contentProcess.welcomeMessage();
+                contentProcess.InfoMessage();
+                contentProcess.helpMessage();
+                contentProcess.defaultProcess();
         }
 }
