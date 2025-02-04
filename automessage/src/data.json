@@ -1,28 +1,114 @@
 [
-  {"id": 1001, "member": "daisy.kim(김다은)/풀스택"},
-  {"id": 1002, "member": "selina.jo(조해인)/풀스택"},
-  {"id": 1003, "member": "Songsua(송윤진)/풀스택"},
-  {"id": 1004, "member": "kane.park(박건)/풀스택"},
-  {"id": 1005, "member": "jude.oh(오윤주)/풀스택"},
-  {"id": 1006, "member": "alex.lee(이윤빈)/풀스택"},
-  {"id": 1007, "member": "rosy.chang(장서연)/풀스택"},
-  {"id": 1008, "member": "daniel.kim(김대훈)/풀스택"},
-  {"id": 1009, "member": "jessie.lee(이지예)/풀스택"},
-  {"id": 1010, "member": "nix.kim(김세빈)/풀스택"},
-  {"id": 1011, "member": "helen.lee(김다은)/풀스택"},
-  {"id": 1012, "member": "shai.hong(홍동근)/풀스택"},
-  {"id": 1013, "member": "logan(조건희)/풀스택"},
-  {"id": 1014, "member": "amber.jung(정선아)/풀스택"},
-  {"id": 1015, "member": "joy.lee(이주영)/풀스택"},
-  {"id": 1016, "member": "nick.kim(김한주)/풀스택"},
-  {"id": 1017, "member": "hwarang.oh(오화랑)/풀스택"},
-  {"id": 1018, "member": "huni.kwon(권상훈)/풀스택"},
-  {"id": 1019, "member": "jianne.nam(남지현)/풀스택"},
-  {"id": 1020, "member": "kevein.joung(정현우)/풀스택"},
-  {"id": 1021, "member": "jun.jang(장준용)/풀스택"},
-  {"id": 1022, "member": "jelly.song(송재민)/풀스택"},
-  {"id": 1023, "member": "wren.kim(김시은)/풀스택"},
-  {"id": 1024, "member": "jina.kim(김진아)/풀스택"},
-  {"id": 1025, "member": "kevin(케빈)/풀스택"},
-  {"id": 1026, "member": "void(보이드)/풀스택"}
+  {
+    "id": 1001,
+    "member": "daisy.kim(김다은)/풀스택"
+  },
+  {
+    "id": 1002,
+    "member": "selina.jo(조해인)/풀스택"
+  },
+  {
+    "id": 1003,
+    "member": "Songsua(송윤진)/풀스택"
+  },
+  {
+    "id": 1004,
+    "member": "kane.park(박건)/풀스택"
+  },
+  {
+    "id": 1005,
+    "member": "jude.oh(오윤주)/풀스택"
+  },
+  {
+    "id": 1006,
+    "member": "alex.lee(이윤빈)/풀스택"
+  },
+  {
+    "id": 1007,
+    "member": "rosy.chang(장서연)/풀스택"
+  },
+  {
+    "id": 1008,
+    "member": "daniel.kim(김대훈)/풀스택"
+  },
+  {
+    "id": 1009,
+    "member": "jessie.lee(이지예)/풀스택"
+  },
+  {
+    "id": 1010,
+    "member": "nix.kim(김세빈)/풀스택"
+  },
+  {
+    "id": 1011,
+    "member": "helen.lee(김다은)/풀스택"
+  },
+  {
+    "id": 1012,
+    "member": "shai.hong(홍동근)/풀스택"
+  },
+  {
+    "id": 1013,
+    "member": "logan(조건희)/풀스택"
+  },
+  {
+    "id": 1014,
+    "member": "amber.jung(정선아)/풀스택"
+  },
+  {
+    "id": 1015,
+    "member": "joy.lee(이주영)/풀스택"
+  },
+  {
+    "id": 1016,
+    "member": "nick.kim(김한주)/풀스택"
+  },
+  {
+    "id": 1017,
+    "member": "hwarang.oh(오화랑)/풀스택"
+  },
+  {
+    "id": 1018,
+    "member": "huni.kwon(권상훈)/풀스택"
+  },
+  {
+    "id": 1019,
+    "member": "jianne.nam(남지현)/풀스택"
+  },
+  {
+    "id": 1020,
+    "member": "kevein.joung(정현우)/풀스택"
+  },
+  {
+    "id": 1021,
+    "member": "jun.jang(장준용)/풀스택"
+  },
+  {
+    "id": 1022,
+    "member": "jelly.song(송재민)/풀스택"
+  },
+  {
+    "id": 1023,
+    "member": "wren.kim(김시은)/풀스택"
+  },
+  {
+    "id": 1024,
+    "member": "jina.kim(김진아)/풀스택"
+  },
+  {
+    "id": 1025,
+    "member": "kevin(케빈)/풀스택"
+  },
+  {
+    "id": 1026,
+    "member": "void(보이드)/풀스택"
+  },
+  {
+    "id": 1027,
+    "member": "lo(로)/풀스택"
+  },
+  {
+    "id": 1028,
+    "member": "myFriend(마이프렌드)/인공지능"
+  }
 ]

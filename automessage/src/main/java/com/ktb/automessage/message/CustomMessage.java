@@ -67,6 +67,11 @@ public class CustomMessage extends TypeMessage {
         this.customContent = customContent;
     }
 
+    @Override
+    public int getType() {
+        return super.getType();
+    }
+
     /**
      * Custom Message를 생성합니다.
      * 

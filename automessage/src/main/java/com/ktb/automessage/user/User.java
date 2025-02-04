@@ -21,6 +21,8 @@ public class User {
         return this.kName;
     }
 
+    public void setKName(String kName) { this.kName = kName;}
+
     public String getKName() {
         return this.kName;
     }

@@ -7,8 +7,8 @@ package com.ktb.automessage.user;
  */
 public class KTBUser extends User {
     private static final String UNKNOWN = "Unknown";
-    private final String eName;
-    private final String track;
+    private String eName;
+    private String track;
 
     public KTBUser() {
         super();
@@ -28,9 +28,20 @@ public class KTBUser extends User {
         this.track = track;
     }
 
-    @Override
-    public String toString() {
-        return this.eName;
+    public void setKName(String kName) {
+        super.setKName(kName);
+    }
+
+    public void setEName(String eName) {
+        this.eName = eName;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
+
+    public String getFullName() {
+        return this.eName + "(" + super.getKName() + ")/" + this.track;
     }
 
     public String getEName() {
@@ -40,6 +51,9 @@ public class KTBUser extends User {
     public String getTrack() {
         return this.track;
     }
+
+    @Override
+    public String toString() { return getFullName(); }
 
     public String greet() {
         return "안녕하세요, " + this.eName + " :)";
