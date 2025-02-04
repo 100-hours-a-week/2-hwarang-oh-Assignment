@@ -1,33 +1,43 @@
 package com.ktb.automessage;
 
-import com.ktb.automessage.listener.DiscordListener;
+import com.ktb.automessage.exception.MemberNameException;
+import com.ktb.automessage.user.User;
+import com.ktb.automessage.utils.ContentsUtil;
+import com.ktb.automessage.utils.MemberUtil;
+import com.ktb.automessage.utils.UserDataUtil;
 
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import java.io.FileReader;
+import java.util.Scanner;
 
 /**
  * TODO : 현재 사용하는 JDABuilder는 무엇인가?
  * * Docs : https://jda.wiki/using-jda/getting-started/
- * * Bot Installation URL :
- * https://discord.com/oauth2/authorize?client_id=1331429269100040192&permissions=67584&integration_type=0&scope=bot+applications.commands
- * * Bot Token : GitHub에는 빼고 올리겠습니다:)
+ * * Bot Token : GitHub에 올리면 안되는 정보 ( 본인의 Bot Token을 사용해야 함 )
  */
 public class Main {
-    public static void main(String[] args) {
-        String token = ""; // Your Bot Token Here
-        JDA jda = JDABuilder.createDefault(token).enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                .addEventListeners(new DiscordListener()).build();
-        CommandListUpdateAction commands = jda.updateCommands();
-        commands.addCommands(
-                Commands.slash("send", "Makes the bot say what you Tell")
-                        .addOption(OptionType.USER, "target", "보낼 사람", true)
-                        .addOption(OptionType.INTEGER, "type", "1 : 감사, 2 : 칭찬, 3 : 응원", false)
-                        .addOption(OptionType.STRING, "content", "보내고 싶은 추가 메시지", false));
-        commands.queue();
-    }
+        public static void main(String[] args) throws InterruptedException, MemberNameException {
+                // String token =
+                // "";
+                // // Your Bot Token Here
+                // JDA jda =
+                // JDABuilder.createDefault(token).enableIntents(GatewayIntent.MESSAGE_CONTENT)
+                // .addEventListeners(new DiscordListener()).build();
+
+                // Discord Bot Version
+                // CommandListUpdateAction commands = jda.updateCommands();
+                // commands.addCommands(
+                // Commands.slash("send", "Makes the bot say what you Tell")
+                // .addOption(OptionType.USER, "target", "보낼 사람", true)
+                // .addOption(OptionType.INTEGER, "type", "1 : 감사, 2 : 칭찬, 3 : 응원", false)
+                // .addOption(OptionType.STRING, "content", "보내고 싶은 추가 메시지", false));
+                // commands.queue();
+
+                // CLI Version
+                System.out.println(UserDataUtil.loadUserData());
+                ContentsUtil contentProcess = new ContentsUtil();
+
+                boolean isStart = contentProcess.startProcess();
+                if (isStart)
+                        contentProcess.loginProcess();
+        }
 }
