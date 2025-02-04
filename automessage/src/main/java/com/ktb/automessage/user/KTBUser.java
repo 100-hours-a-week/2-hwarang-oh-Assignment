@@ -40,6 +40,10 @@ public class KTBUser extends User {
         this.track = track;
     }
 
+    public String getFullName() {
+        return this.eName + "(" + super.getKName() + ")/" + this.track;
+    }
+
     public String getEName() {
         return this.eName;
     }
@@ -49,9 +53,7 @@ public class KTBUser extends User {
     }
 
     @Override
-    public String toString() {
-        return this.eName + "(" + super.getKName() + ")/" + this.track;
-    }
+    public String toString() { return getFullName(); }
 
     public String greet() {
         return "안녕하세요, " + this.eName + " :)";

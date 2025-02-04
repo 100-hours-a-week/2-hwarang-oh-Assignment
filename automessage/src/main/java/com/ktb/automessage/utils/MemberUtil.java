@@ -2,6 +2,9 @@ package com.ktb.automessage.utils;
 
 import com.ktb.automessage.exception.MemberNameException;
 
+/**
+ * MemberUtil Class는 Member의 정보를 처리하는 Util Class입니다.
+ */
 public class MemberUtil {
     public static String[] parseName(String rawUserData) {
         String eName = rawUserData.split("\\(")[0].trim();

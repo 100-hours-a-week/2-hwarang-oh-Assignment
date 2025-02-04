@@ -46,6 +46,14 @@ public class TypeMessage extends DefaultMessage {
     }
 
     /**
+     * Type을 반환합니다.
+     * @return Type ( int )
+     */
+    public int getType() {
+        return this.type;
+    }
+
+    /**
      * Type Message를 생성합니다.
      * 
      * @apiNote Type 1 : 감사, Type 2 : 칭찬, Type 3 : 응원 ( Else : "" )
@@ -58,7 +66,7 @@ public class TypeMessage extends DefaultMessage {
             case 1:
                 return targetName + "님, 감사합니다 :)";
             case 2:
-                return targetName + "의 열정은 정말 대단한 것 같습니다다!";
+                return targetName + "의 열정은 정말 대단한 것 같습니다!";
             case 3:
                 return targetName + "님의 " + super.targetUser.getTrack() + "과정을 응원합니다!";
             default:

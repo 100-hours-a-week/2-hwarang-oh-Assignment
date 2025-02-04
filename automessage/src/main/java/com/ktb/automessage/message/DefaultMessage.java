@@ -39,7 +39,7 @@ public class DefaultMessage {
      * @param null
      */
     private String makeDefaultMessage() {
-        return this.targetUser.greet() + "\n" + this.fromUser.introduce();
+        return this.targetUser.greet() + " " + this.fromUser.introduce();
     }
 
     /**

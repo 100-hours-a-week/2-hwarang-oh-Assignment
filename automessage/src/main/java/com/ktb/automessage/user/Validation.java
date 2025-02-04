@@ -1,5 +1,8 @@
 package com.ktb.automessage.user;
 
+/**
+ * Validation Class는 Contents의 진행 과정에서, 유효성 검사를 위한 Class입니다.
+ */
 public class Validation {
     String target;
     boolean isValid;
