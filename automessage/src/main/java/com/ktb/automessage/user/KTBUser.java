@@ -1,14 +1,14 @@
 package com.ktb.automessage.user;
 
 /**
- * IMP : Auto Message Bot의 User에 해당하는 Class
- * * kName : 한글 이름 (super), eName : 영어 이름, track : 트랙 과정
- * ! KTB User Class를 통해, Discord의 User Class와 구분
+ * KTBUser Class는 User의 정보를 담는 Class입니다.
+ * 
+ * @see User
  */
 public class KTBUser extends User {
     private static final String UNKNOWN = "Unknown";
-    String eName;
-    String track;
+    private final String eName;
+    private final String track;
 
     public KTBUser() {
         super();
@@ -46,6 +46,6 @@ public class KTBUser extends User {
     }
 
     public String introduce() {
-        return "저는 " + this.track + "과정의 " + this.eName + "/" + this.kName + " 입니다.";
+        return "저는 " + this.track + "과정의 " + this.eName + "/" + super.getKName() + " 입니다.";
     }
 }

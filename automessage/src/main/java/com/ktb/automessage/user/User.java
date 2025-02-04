@@ -1,12 +1,12 @@
 package com.ktb.automessage.user;
 
 /**
- * IMP : 일반적인 User의 정보를 담는 Class
- * * kName : 한글 이름
- * ! User Class는 Discrod JDA의 User Class와 구분하기 위해 KTBUser로 extends 예정
+ * User Class는 User의 정보를 담는 Class입니다.
+ * 
+ * @apiNote User Class는 JDA의 User Class와 구분하기 위해 KTBUser로 extends 후 사용
  */
 public class User {
-    String kName;
+    private String kName;
 
     public User() {
         this.kName = "Unknown";
