@@ -39,7 +39,7 @@ public class TypeMessage extends DefaultMessage {
      * 
      * @param fromUser   : 보내는 User ( Myself )
      * @param targetUser : 받는 User
-     * @param type       : Type ( 1 : 감사, 2 : 칭찬, 3 : 응원 )
+     * @param type       : Type ( 감사, 칭찬, 응원 )
      */
     public TypeMessage(KTBUser fromUser, KTBUser targetUser, MessageType type) {
         super(fromUser, targetUser);

@@ -7,6 +7,7 @@ import com.ktb.automessage.domain.message.TypeMessage;
 import com.ktb.automessage.domain.user.KTBUser;
 import com.ktb.automessage.domain.user.Validation;
 import com.ktb.automessage.exception.MemberNameException;
+import com.ktb.automessage.exception.MessageTypeException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -230,12 +231,20 @@ public class ContentsUtil {
         while (true) {
             System.out.print("💬 어떤 감정을 보내고 싶으신가요? (" + MessageType.getAvailableKeywords() + "): ");
             String input = this.scanner.nextLine().trim();
+            try {
+                if (input.isEmpty()) {
+                    throw new MessageTypeException();
+                }
 
-            this.messageType = MessageType.fromKeyword(input);
-            if (this.messageType != MessageType.DEFAULT) {
-                break;
-            } else {
-                System.out.println("⚠ 올바른 키워드를 입력해주세요! (" + MessageType.getAvailableKeywords() + ")");
+                this.messageType = MessageType.fromKeyword(input);
+                if (this.messageType == MessageType.DEFAULT) {
+                    throw new MessageTypeException("⚠ " + input + "은(는) 올바른 메시지 타입이 아닙니다!");
+                } else
+                    break;
+
+            } catch (MessageTypeException e) {
+                System.out.println("⚠ " + e.getMessage());
+                System.out.println("💡 사용 가능한 메시지 타입: " + MessageType.getAvailableKeywords());
             }
         }
 
