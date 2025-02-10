@@ -1,5 +1,6 @@
 package com.ktb.automessage;
 
+import com.ktb.automessage.controller.ContentsController;
 import com.ktb.automessage.exception.MemberNameException;
 import com.ktb.automessage.listener.DiscordListener;
 import com.ktb.automessage.utils.ContentsUtil;
@@ -34,17 +35,27 @@ public class Main {
                 // commands.queue();
 
                 // CLI Version
-                ContentsUtil contentProcess = new ContentsUtil();
+                // ContentsUtil contentProcess = new ContentsUtil();
 
-                boolean isStart = contentProcess.startProcess();
-                if (!isStart)
-                        return;
-                boolean isLogin = contentProcess.loginProcess();
-                if (!isLogin)
-                        return;
-                contentProcess.welcomeMessage();
-                contentProcess.InfoMessage();
-                contentProcess.helpMessage();
-                contentProcess.defaultProcess();
+                // boolean isStart = contentProcess.startProcess();
+                // if (!isStart)
+                // return;
+                // boolean isLogin = contentProcess.loginProcess();
+                // if (!isLogin)
+                // return;
+                // contentProcess.welcomeMessage();
+                // contentProcess.InfoMessage();
+                // contentProcess.helpMessage();
+                // contentProcess.defaultProcess();
+
+                // Other CLI Version
+                ContentsController contentsController = new ContentsController();
+                try {
+                        contentsController.start();
+                } catch (MemberNameException e) {
+                        System.out.println("⚠ " + e.getMessage());
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
         }
 }

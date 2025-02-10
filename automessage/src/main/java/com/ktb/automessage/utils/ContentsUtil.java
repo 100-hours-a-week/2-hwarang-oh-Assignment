@@ -5,9 +5,9 @@ import com.ktb.automessage.domain.message.DefaultMessage;
 import com.ktb.automessage.domain.message.MessageType;
 import com.ktb.automessage.domain.message.TypeMessage;
 import com.ktb.automessage.domain.user.KTBUser;
-import com.ktb.automessage.domain.user.Validation;
 import com.ktb.automessage.exception.MemberNameException;
 import com.ktb.automessage.exception.MessageTypeException;
+import com.ktb.automessage.validation.Validation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
