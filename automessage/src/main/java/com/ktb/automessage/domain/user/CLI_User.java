@@ -1,4 +1,4 @@
-package com.ktb.automessage.user;
+package com.ktb.automessage.domain.user;
 
 import com.ktb.automessage.utils.MemberUtil;
 

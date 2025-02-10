@@ -1,6 +1,6 @@
-package com.ktb.automessage.message;
+package com.ktb.automessage.domain.message;
 
-import com.ktb.automessage.user.KTBUser;
+import com.ktb.automessage.domain.user.KTBUser;
 
 /**
  * CustomMessage Class는 Custom Message를 생성하는 역할을 합니다.
@@ -47,7 +47,7 @@ public class CustomMessage extends TypeMessage {
      * @param targetUser : 받는 User
      * @param type       : Type ( 1 : 감사, 2 : 칭찬, 3 : 응원 )
      */
-    public CustomMessage(KTBUser fromUser, KTBUser targetUser, int type) {
+    public CustomMessage(KTBUser fromUser, KTBUser targetUser, MessageType type) {
         super(fromUser, targetUser, type);
         this.customContent = "";
     }
@@ -62,13 +62,13 @@ public class CustomMessage extends TypeMessage {
      * @param type          : Type ( 1 : 감사, 2 : 칭찬, 3 : 응원 )
      * @param customContent : Custom Content
      */
-    public CustomMessage(KTBUser fromUser, KTBUser targetUser, int type, String customContent) {
+    public CustomMessage(KTBUser fromUser, KTBUser targetUser, MessageType type, String customContent) {
         super(fromUser, targetUser, type);
         this.customContent = customContent;
     }
 
     @Override
-    public int getType() {
+    public MessageType getType() {
         return super.getType();
     }
 

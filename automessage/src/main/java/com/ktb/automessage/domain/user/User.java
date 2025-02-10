@@ -1,4 +1,4 @@
-package com.ktb.automessage.user;
+package com.ktb.automessage.domain.user;
 
 /**
  * User Class는 User의 정보를 담는 Class입니다.
@@ -21,7 +21,9 @@ public class User {
         return this.kName;
     }
 
-    public void setKName(String kName) { this.kName = kName;}
+    public void setKName(String kName) {
+        this.kName = kName;
+    }
 
     public String getKName() {
         return this.kName;

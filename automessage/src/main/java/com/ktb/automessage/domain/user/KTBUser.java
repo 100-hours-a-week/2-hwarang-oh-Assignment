@@ -1,4 +1,4 @@
-package com.ktb.automessage.user;
+package com.ktb.automessage.domain.user;
 
 /**
  * KTBUser Class는 User의 정보를 담는 Class입니다.
@@ -53,7 +53,9 @@ public class KTBUser extends User {
     }
 
     @Override
-    public String toString() { return getFullName(); }
+    public String toString() {
+        return getFullName();
+    }
 
     public String greet() {
         return "안녕하세요, " + this.eName + " :)";

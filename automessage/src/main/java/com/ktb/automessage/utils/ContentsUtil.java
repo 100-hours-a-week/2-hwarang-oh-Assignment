@@ -1,11 +1,12 @@
 package com.ktb.automessage.utils;
 
+import com.ktb.automessage.domain.message.CustomMessage;
+import com.ktb.automessage.domain.message.DefaultMessage;
+import com.ktb.automessage.domain.message.MessageType;
+import com.ktb.automessage.domain.message.TypeMessage;
+import com.ktb.automessage.domain.user.KTBUser;
+import com.ktb.automessage.domain.user.Validation;
 import com.ktb.automessage.exception.MemberNameException;
-import com.ktb.automessage.message.CustomMessage;
-import com.ktb.automessage.message.DefaultMessage;
-import com.ktb.automessage.message.TypeMessage;
-import com.ktb.automessage.user.Validation;
-import com.ktb.automessage.user.KTBUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,6 @@ import java.util.Scanner;
  * ContentsUtil Class는 KTB AutoMessage의 기본적인 흐름을 담당하는 Class입니다.
  */
 public class ContentsUtil {
-    private int messageType;
     private String userInput;
     private final Scanner scanner;
     private final HashMap<Integer, KTBUser> userData;
@@ -24,6 +24,7 @@ public class ContentsUtil {
     private final KTBUser mainUser;
     private KTBUser targetUser;
     private DefaultMessage message;
+    private MessageType messageType;
 
     public ContentsUtil() {
         this.scanner = new Scanner(System.in);
@@ -44,10 +45,14 @@ public class ContentsUtil {
                 System.out.println("🚪 KTB AutoMessage를 종료합니다. 다음에 또 만나요!");
                 break;
             }
-            if (userInput.equalsIgnoreCase("SEND")) sendProcess();
-            if (userInput.equalsIgnoreCase("INFO")) InfoMessage();
-            if (userInput.equalsIgnoreCase("HELP")) helpMessage();
-            if (userInput.equalsIgnoreCase("DISCORD")) System.out.println("Discord 기능은 준비중입니다.");
+            if (userInput.equalsIgnoreCase("SEND"))
+                sendProcess();
+            if (userInput.equalsIgnoreCase("INFO"))
+                InfoMessage();
+            if (userInput.equalsIgnoreCase("HELP"))
+                helpMessage();
+            if (userInput.equalsIgnoreCase("DISCORD"))
+                System.out.println("Discord 기능은 준비중입니다.");
         }
     }
 
@@ -71,16 +76,18 @@ public class ContentsUtil {
         System.out.println("로그인을 진행합니다. 사용자님의 정보를 알려주세요!");
 
         validation = checkKName();
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.mainUser.setKName(validation.getTarget());
 
-
         validation = checkEName(this.mainUser.getKName());
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.mainUser.setEName(validation.getTarget());
 
         validation = checkTrack(this.mainUser.getKName());
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.mainUser.setTrack(validation.getTarget());
 
         loginLoading();
@@ -121,8 +128,10 @@ public class ContentsUtil {
         System.out.print("📌 메시지를 보낼 사용자 목록을 보시겠습니까? (Y/N): ");
 
         boolean isTargeted;
-        if (this.scanner.nextLine().equalsIgnoreCase("Y")) isTargeted = sendSelectedTarget();
-        else isTargeted = sendInputTarget();
+        if (this.scanner.nextLine().equalsIgnoreCase("Y"))
+            isTargeted = sendSelectedTarget();
+        else
+            isTargeted = sendInputTarget();
 
         if (!isTargeted) {
             System.out.println("🔙 초기 화면으로 돌아갑니다.");
@@ -138,7 +147,6 @@ public class ContentsUtil {
         }
         sendCustomMessage();
     }
-
 
     // Private Method
     private boolean sendSelectedTarget() {
@@ -177,15 +185,18 @@ public class ContentsUtil {
         System.out.println("📌 메시지를 보내고 싶은 상대방의 정보를 알려주세요.");
 
         validation = checkKName();
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.targetUser.setKName(validation.getTarget());
 
         validation = checkEName(this.mainUser.getKName());
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.targetUser.setEName(validation.getTarget());
 
         validation = checkTrack(this.mainUser.getKName());
-        if (!validation.getValid()) return false;
+        if (!validation.getValid())
+            return false;
         this.targetUser.setTrack(validation.getTarget());
 
         if (!this.tracking.contains(this.targetUser.getFullName())) {
@@ -195,8 +206,8 @@ public class ContentsUtil {
                 this.tracking.add(this.targetUser.getFullName());
                 this.userData.put(this.userData.size() + 1, this.targetUser);
                 UserDataUtil.saveUserData(this.targetUser.getFullName());
-            }
-            else System.out.println("❌ KTB Track 정보에 " + this.targetUser + "님을 등록하지 않았습니다.");
+            } else
+                System.out.println("❌ KTB Track 정보에 " + this.targetUser + "님을 등록하지 않았습니다.");
         }
 
         return true;
@@ -216,24 +227,19 @@ public class ContentsUtil {
 
     private boolean sendTypeMessage() {
         System.out.println();
-        int type;
         while (true) {
-            System.out.print("💬 어떤 감정을 보내고 싶으신가요? (1: 감사 🙏, 2: 칭찬 👏, 3: 응원 💪): ");
+            System.out.print("💬 어떤 감정을 보내고 싶으신가요? (" + MessageType.getAvailableKeywords() + "): ");
             String input = this.scanner.nextLine().trim();
 
-            try {
-                type = Integer.parseInt(input);
-                if (type >= 1 && type <= 3) {
-                    this.messageType = type;
-                    break;
-                } else {
-                    System.out.println("⚠ 올바른 번호를 입력해주세요! (1: 감사 🙏, 2: 칭찬 👏, 3: 응원 💪)");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠ 숫자를 입력해주세요! (예시: 1, 2, 3)");
+            this.messageType = MessageType.fromKeyword(input);
+            if (this.messageType != MessageType.DEFAULT) {
+                break;
+            } else {
+                System.out.println("⚠ 올바른 키워드를 입력해주세요! (" + MessageType.getAvailableKeywords() + ")");
             }
         }
-        this.message = new TypeMessage(this.mainUser, this.targetUser, this.messageType);
+
+        this.message = new TypeMessage(this.mainUser, this.targetUser, messageType);
         System.out.println("✉ " + this.mainUser + "님이 " + this.targetUser + "님에게 보낼 메시지를 만들었어요");
         System.out.println();
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -268,6 +274,7 @@ public class ContentsUtil {
 
     /**
      * TODO : Thread를 활용한 구현으로 추후 수정 예정
+     * 
      * @throws InterruptedException
      */
     private void loginLoading() throws InterruptedException {

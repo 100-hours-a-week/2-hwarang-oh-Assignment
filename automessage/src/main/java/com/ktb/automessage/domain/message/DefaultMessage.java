@@ -1,6 +1,6 @@
-package com.ktb.automessage.message;
+package com.ktb.automessage.domain.message;
 
-import com.ktb.automessage.user.KTBUser;
+import com.ktb.automessage.domain.user.KTBUser;
 
 /**
  * Default Message Class는 두 사용자 간의 기본 Message를 생성하는 역할을 합니다.

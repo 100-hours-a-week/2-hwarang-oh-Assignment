@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 /**
  * TODO : 현재 사용하는 JDABuilder는 무엇인가?
  * * Docs : https://jda.wiki/using-jda/getting-started/
+ * https://discord.com/oauth2/authorize?client_id=1331429269100040192&permissions=67584&integration_type=0&scope=bot+applications.commands
  * * Bot Token : GitHub에 올리면 안되는 정보 ( 본인의 Bot Token을 사용해야 함 )
  */
 public class Main {

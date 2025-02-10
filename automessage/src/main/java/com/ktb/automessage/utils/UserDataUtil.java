@@ -2,8 +2,8 @@ package com.ktb.automessage.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ktb.automessage.user.CLI_User;
-import com.ktb.automessage.user.KTBUser;
+import com.ktb.automessage.domain.user.CLI_User;
+import com.ktb.automessage.domain.user.KTBUser;
 
 import java.io.FileReader;
 import java.io.FileWriter;
