@@ -13,7 +13,7 @@ public class UserController {
         this.userService = new UserService(this.consoleIOUtil);
     }
 
-    public void loginProcess(KTBUser mainUser) {
-        userService.loginProcess(mainUser);
+    public boolean loginProcess(KTBUser mainUser) {
+        return userService.loginProcess(mainUser);
     }
 }

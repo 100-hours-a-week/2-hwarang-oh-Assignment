@@ -48,14 +48,8 @@ public class Main {
                 // contentProcess.helpMessage();
                 // contentProcess.defaultProcess();
 
-                // Other CLI Version
+                // CLI Version Revision
                 ContentsController contentsController = new ContentsController();
-                try {
-                        contentsController.start();
-                } catch (MemberNameException e) {
-                        System.out.println("⚠ " + e.getMessage());
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
+                contentsController.start();
         }
 }

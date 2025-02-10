@@ -3,33 +3,64 @@ package com.ktb.automessage.controller;
 import java.util.Scanner;
 
 import com.ktb.automessage.domain.user.KTBUser;
-import com.ktb.automessage.exception.DefaultEmptyException;
 import com.ktb.automessage.utils.ConsoleIOUtil;
 
 public class ContentsController {
-    private ConsoleIOUtil consoleIOUtil;
-    private UserController userController;
     private String userInput;
     private KTBUser mainUser;
     private KTBUser targetUser;
+    private ConsoleIOUtil consoleIOUtil;
+    private UserController userController;
+    private MessageController messageController;
 
     public ContentsController() {
         this.consoleIOUtil = new ConsoleIOUtil(new Scanner(System.in));
         this.userController = new UserController(consoleIOUtil);
+        this.messageController = new MessageController(consoleIOUtil);
         this.mainUser = new KTBUser();
         this.targetUser = new KTBUser();
     }
 
-    public void start() throws Exception {
+    public void start() throws InterruptedException {
+        if (!startProcess())
+            return;
+        if (!userController.loginProcess(this.mainUser))
+            return;
+
         welcomeMessage();
-        if (startProcess()) {
-            userController.loginProcess(this.mainUser);
-            InfoMessage();
-            helpMessage();
+        helpMessage();
+        InfoMessage();
+        defaultProcess();
+    }
+
+    private void defaultProcess() throws InterruptedException {
+        while (true) {
+            this.userInput = consoleIOUtil.defaultPrintWithInput("✨ 입력할 명령어: ");
+            if (this.userInput.equalsIgnoreCase("EXIT")) {
+                consoleIOUtil.defaultPrint("🚪 KTB AutoMessage를 종료합니다.");
+                consoleIOUtil.closeScanner();
+                break;
+            }
+            switch (this.userInput.toUpperCase()) {
+                case "SEND":
+                    messageController.sendProcess(this.mainUser, this.targetUser);
+                    break;
+                case "INFO":
+                    InfoMessage();
+                    break;
+                case "HELP":
+                    helpMessage();
+                    break;
+                case "DISCORD":
+                    consoleIOUtil.defaultPrint("🎵 Discord에 참여하셔서 재미있는 것을 경험해보세요!");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-    private boolean startProcess() throws DefaultEmptyException {
+    private boolean startProcess() {
         this.userInput = consoleIOUtil.defaultPrintWithInput("🔑 KTB AutoMessage에 로그인 하시겠습니까? (Y/N) ");
         if (this.userInput.equalsIgnoreCase("Y"))
             return true;

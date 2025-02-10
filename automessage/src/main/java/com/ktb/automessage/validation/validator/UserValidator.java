@@ -58,7 +58,7 @@ public class UserValidator {
                     continue;
                 }
             }
-            userInput = consoleIOUtil.defaultPrintWithInput("📝 사용자님의 영어 이름을 입력해주세요. (예시: GilDong.Hong): ",
+            userInput = consoleIOUtil.defaultPrintWithInput("📝 " + kName + "님의 영어 이름을 입력해주세요. (예시: GilDong.Hong): ",
                     new MemberNameException());
             try {
                 if (validateEnglishName(this.userInput)) {
@@ -78,7 +78,8 @@ public class UserValidator {
 
     public Validation checkTrack(String kName) {
         Validation validation = new Validation();
-        userInput = consoleIOUtil.defaultPrintWithInput("📝 사용자님의 Track 정보를 입력해주세요. (예시: 풀스택, 인공지능, 클라우드) : ");
+        userInput = consoleIOUtil
+                .defaultPrintWithInput("📝 " + kName + "님의 Track 정보를 입력해주세요. (예시: 풀스택, 인공지능, 클라우드) : ");
         System.out.println("✅ Track 정보가 정상적으로 입력되었습니다. " + this.userInput);
         validation.setTarget(this.userInput);
         validation.setValid(true);
