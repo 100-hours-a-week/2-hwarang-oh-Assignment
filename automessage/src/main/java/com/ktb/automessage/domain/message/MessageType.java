@@ -1,5 +1,9 @@
 package com.ktb.automessage.domain.message;
 
+/**
+ * MessageType Enum
+ * DEFAULT, THANKS, PRAISE, CHEER
+ */
 public enum MessageType {
     DEFAULT(0, "기본"),
     THANKS(1, "감사"),
@@ -22,7 +26,7 @@ public enum MessageType {
         return keyword;
     }
 
-    // 키워드로 MessageType 찾기
+    // keyword -> MessageType 변환
     public static MessageType fromKeyword(String keyword) {
         for (MessageType type : values()) {
             if (type.getKeyword().equals(keyword)) {
@@ -32,7 +36,7 @@ public enum MessageType {
         return DEFAULT;
     }
 
-    // 이모지와 함께 표시할 키워드 목록 반환
+    // MessageType을 적절한 String으로 변환
     public static String getAvailableKeywords() {
         return String.format("%s 🙏, %s 👏, %s 💪",
                 THANKS.getKeyword(),

@@ -5,8 +5,8 @@ import com.ktb.automessage.domain.message.DefaultMessage;
 import com.ktb.automessage.domain.message.MessageType;
 import com.ktb.automessage.domain.message.TypeMessage;
 import com.ktb.automessage.domain.user.KTBUser;
-import com.ktb.automessage.domain.user.Validation;
-import com.ktb.automessage.exception.MemberNameException;
+import com.ktb.automessage.exception.MessageTypeException;
+import com.ktb.automessage.validation.Validation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,11 @@ import java.util.Scanner;
 
 /**
  * ContentsUtil Class는 KTB AutoMessage의 기본적인 흐름을 담당하는 Class입니다.
+ * @deprecated : 기능이 너무 많아져서 분리했습니다.
+ * @see com.ktb.automessage.controller.ContentsController
+ * @see com.ktb.automessage.validation.Validation
+ * @see com.ktb.automessage.service.UserService
+ * @see com.ktb.automessage.service.MessageService
  */
 public class ContentsUtil {
     private String userInput;
@@ -230,12 +235,20 @@ public class ContentsUtil {
         while (true) {
             System.out.print("💬 어떤 감정을 보내고 싶으신가요? (" + MessageType.getAvailableKeywords() + "): ");
             String input = this.scanner.nextLine().trim();
+            try {
+                if (input.isEmpty()) {
+                    throw new MessageTypeException();
+                }
 
-            this.messageType = MessageType.fromKeyword(input);
-            if (this.messageType != MessageType.DEFAULT) {
-                break;
-            } else {
-                System.out.println("⚠ 올바른 키워드를 입력해주세요! (" + MessageType.getAvailableKeywords() + ")");
+                this.messageType = MessageType.fromKeyword(input);
+                if (this.messageType == MessageType.DEFAULT) {
+                    throw new MessageTypeException("⚠ " + input + "은(는) 올바른 메시지 타입이 아닙니다!");
+                } else
+                    break;
+
+            } catch (MessageTypeException e) {
+                System.out.println("⚠ " + e.getMessage());
+                System.out.println("💡 사용 가능한 메시지 타입: " + MessageType.getAvailableKeywords());
             }
         }
 
@@ -330,17 +343,17 @@ public class ContentsUtil {
             }
             System.out.print("📝 사용자님의 한글 이름을 입력해주세요. (예시: 홍길동): ");
             this.userInput = this.scanner.nextLine();
-            try {
-                if (MemberUtil.validateKoreanName(this.userInput.trim())) {
-                    System.out.println("✅ 이름이 정상적으로 입력되었습니다. " + this.userInput);
-                    validation.setTarget(this.userInput);
-                    validation.setValid(true);
-                    break;
-                }
-            } catch (MemberNameException e) {
-                System.out.println("⚠ " + e.getMessage());
-                failCount++;
-            }
+            // try {
+            // if (MemberUtil.validateKoreanName(this.userInput.trim())) {
+            // System.out.println("✅ 이름이 정상적으로 입력되었습니다. " + this.userInput);
+            // validation.setTarget(this.userInput);
+            // validation.setValid(true);
+            // break;
+            // }
+            // } catch (MemberNameException e) {
+            // System.out.println("⚠ " + e.getMessage());
+            // failCount++;
+            // }
         }
         return validation;
     }
@@ -361,17 +374,17 @@ public class ContentsUtil {
             }
             System.out.print("📝 사용자님의 영어 이름을 입력해주세요. (예시: GilDong.Hong): ");
             this.userInput = this.scanner.nextLine();
-            try {
-                if (MemberUtil.validateEnglishName(this.userInput.trim())) {
-                    System.out.println("✅ 이름이 정상적으로 입력되었습니다. " + this.userInput);
-                    validation.setTarget(this.userInput);
-                    validation.setValid(true);
-                    break;
-                }
-            } catch (MemberNameException e) {
-                System.out.println("⚠ " + e.getMessage());
-                failCount++;
-            }
+            // try {
+            // if (MemberUtil.validateEnglishName(this.userInput.trim())) {
+            // System.out.println("✅ 이름이 정상적으로 입력되었습니다. " + this.userInput);
+            // validation.setTarget(this.userInput);
+            // validation.setValid(true);
+            // break;
+            // }
+            // } catch (MemberNameException e) {
+            // System.out.println("⚠ " + e.getMessage());
+            // failCount++;
+            // }
         }
         return validation;
     }

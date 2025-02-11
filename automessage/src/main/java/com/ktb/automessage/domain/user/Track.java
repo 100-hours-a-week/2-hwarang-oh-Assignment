@@ -1,4 +1,4 @@
-package com.ktb.automessage.domain.track;
+package com.ktb.automessage.domain.user;
 
 /**
  * Track Enum

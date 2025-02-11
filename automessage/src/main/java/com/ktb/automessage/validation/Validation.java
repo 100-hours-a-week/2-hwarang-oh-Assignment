@@ -1,4 +1,4 @@
-package com.ktb.automessage.domain.user;
+package com.ktb.automessage.validation;
 
 /**
  * Validation Class는 Contents의 진행 과정에서, 유효성 검사를 위한 Class입니다.

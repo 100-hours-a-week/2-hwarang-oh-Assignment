@@ -8,6 +8,7 @@ import com.ktb.automessage.domain.user.KTBUser;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UserDataUtil {
     private static final ArrayList<KTBUser> userData = new ArrayList<>();
 
     public static ArrayList<KTBUser> loadUserData() {
-        try (FileReader reader = new FileReader(DATA_PATH)) {
+        try (FileReader reader = new FileReader(DATA_PATH, StandardCharsets.UTF_8)) {
             Gson gson = new Gson();
             CLI_User[] users = gson.fromJson(reader, CLI_User[].class);
             for (CLI_User user : users)
@@ -34,7 +35,7 @@ public class UserDataUtil {
     public static void saveUserData(String newUser) {
         try {
             List<CLI_User> users = new ArrayList<>();
-            try (FileReader reader = new FileReader(DATA_PATH)) {
+            try (FileReader reader = new FileReader(DATA_PATH, StandardCharsets.UTF_8)) {
                 Gson gson = new Gson();
                 CLI_User[] existingUsers = gson.fromJson(reader, CLI_User[].class);
                 if (existingUsers != null) {
