@@ -1,7 +1,6 @@
 package com.ktb.automessage.service;
 
 import com.ktb.automessage.domain.user.KTBUser;
-import com.ktb.automessage.domain.user.User;
 import com.ktb.automessage.utils.ConsoleIOUtil;
 import com.ktb.automessage.validation.Validation;
 import com.ktb.automessage.validation.validator.UserValidator;
@@ -41,14 +40,42 @@ public class UserService {
         return true;
     }
 
+    private class AuthCheckThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                System.out.println("🔍 인증 정보를 확인하는 중입니다...");
+                Thread.sleep(3000);
+                System.out.println("✨ 인증 정보 분석이 완료되었습니다.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    private class UserDataLoadingThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                System.out.println("📂 사용자 데이터를 불러오는 중입니다...");
+                Thread.sleep(2000);
+                userDataService.loadUserData();
+                System.out.println("📂 사용자 데이터 로딩이 완료되었습니다.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
     private void loginLoading() throws InterruptedException {
-        userDataService.loadUserData();
-        userDataService.displayUserData();
-        consoleIOUtil.delayPrint("""
-                🔍 KTB AutoMessage에 접속에 필요한 인증 정보를 확인합니다...
-                📂 사용자 목록을 불러오는 중입니다...
-                ✅ 필요한 정보를 모두 불러왔습니다!
-                🚀 KTB AutoMessage에 접속되었습니다.
-                """);
+        AuthCheckThread authThread = new AuthCheckThread();
+        UserDataLoadingThread dataThread = new UserDataLoadingThread();
+        authThread.start();
+        dataThread.start();
+
+        authThread.join();
+        dataThread.join();
+        System.out.println("\n✅ 필요한 정보를 모두 불러왔습니다!");
+        System.out.println("🚀 KTB AutoMessage에 접속되었습니다.\n");
     }
 }

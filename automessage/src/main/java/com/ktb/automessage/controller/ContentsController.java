@@ -104,5 +104,4 @@ public class ContentsController {
                 🎵 Discord : 재미있는 것이 나올수도..?
                 """);
     }
-
 }
