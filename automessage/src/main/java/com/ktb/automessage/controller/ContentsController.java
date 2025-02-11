@@ -8,8 +8,8 @@ import com.ktb.automessage.utils.ConsoleIOUtil;
 
 public class ContentsController {
     private String userInput;
-    private final KTBUser mainUser;
     private final KTBUser targetUser;
+    private final KTBUser mainUser;
     private final ConsoleIOUtil consoleIOUtil;
     private final UserController userController;
     private final UserDataService userDataService;
@@ -41,6 +41,7 @@ public class ContentsController {
             this.userInput = consoleIOUtil.defaultPrintWithInput("✨ 입력할 명령어: ");
             if (this.userInput.equalsIgnoreCase("EXIT")) {
                 consoleIOUtil.defaultPrint("🚪 KTB AutoMessage를 종료합니다.");
+                messageController.stopReplyThread();
                 consoleIOUtil.closeScanner();
                 break;
             }
@@ -89,7 +90,7 @@ public class ContentsController {
         consoleIOUtil.delayPrint("""
                 📌 메시지 종류
                 1️⃣ 기본 메시지 : 조금 어색하다면 안부 인사를 보내보는 것은 어떨까요? 😊
-                2️⃣ 감정 메시지 : %s의 진심을 담은 메시지를 보낼 수 있습니다 💖
+                2️⃣ 감정 메시지 : %s님의 진심을 담은 메시지를 보낼 수 있습니다 💖
                 3️⃣ 커스텀 메시지 : %s님이 하고싶은 말을 듬뿍 담아서 메시지를 전달할 수 있어요 😊✨
                 """.formatted(this.mainUser.getKName(), this.mainUser.getKName()));
     }

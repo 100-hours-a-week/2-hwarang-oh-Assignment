@@ -1,7 +1,5 @@
 package com.ktb.automessage.service;
 
-import java.util.HashMap;
-
 import com.ktb.automessage.domain.message.CustomMessage;
 import com.ktb.automessage.domain.message.DefaultMessage;
 import com.ktb.automessage.domain.message.MessageType;
@@ -9,7 +7,6 @@ import com.ktb.automessage.domain.message.TypeMessage;
 import com.ktb.automessage.domain.user.KTBUser;
 import com.ktb.automessage.exception.MessageTypeException;
 import com.ktb.automessage.utils.ConsoleIOUtil;
-import com.ktb.automessage.utils.ContentsUtil;
 import com.ktb.automessage.validation.Validation;
 import com.ktb.automessage.validation.validator.UserValidator;
 
@@ -20,11 +17,14 @@ public class MessageService {
     private final ConsoleIOUtil consoleIOUtil;
     private final UserValidator userValidator;
     private final UserDataService userDataService;
+    private final ReplyService replyService;
 
     public MessageService(ConsoleIOUtil consoleIOUtil, UserDataService userDataService) {
         this.consoleIOUtil = consoleIOUtil;
         this.userDataService = userDataService;
         this.userValidator = new UserValidator(this.consoleIOUtil);
+        this.replyService = new ReplyService();
+        this.replyService.startReplyThread();
     }
 
     public void sendProcess(KTBUser mainUser, KTBUser targetUser) {
@@ -33,15 +33,22 @@ public class MessageService {
             return;
         }
         if (!sendDefaultMessage(mainUser, targetUser)) {
+            this.replyService.addMessageToQueue(mainUser, targetUser, message.getMessage());
             consoleIOUtil.defaultPrint("📨 메시지를 " + targetUser + "님에게 보내습니다.");
             return;
         }
         if (!sendTypeMessage(mainUser, targetUser)) {
+            this.replyService.addMessageToQueue(mainUser, targetUser, message.getMessage());
             consoleIOUtil.defaultPrint("📨 메시지를 " + targetUser + "님에게 보내습니다.");
             return;
         }
         sendCustomMessage(mainUser, targetUser);
+        this.replyService.addMessageToQueue(mainUser, targetUser, message.getMessage());
         consoleIOUtil.defaultPrint("📨 메시지를 " + targetUser + "님에게 보내습니다.");
+    }
+
+    public void stopReplyThread() {
+        this.replyService.stopReplyThread();
     }
 
     private boolean sendDefaultMessage(KTBUser mainUser, KTBUser targetUser) {
@@ -71,7 +78,7 @@ public class MessageService {
                     break;
             } catch (MessageTypeException e) {
                 consoleIOUtil.defaultPrint("""
-                        ⚠ %s
+                        %s
                         💡 사용 가능한 메시지 타입: %s""".formatted(e.getMessage(), MessageType.getAvailableKeywords()));
             }
         }
@@ -115,12 +122,16 @@ public class MessageService {
 
     private boolean sendSelectedTarget(KTBUser targetUser) {
         userDataService.displayUserData();
+        KTBUser tempNextUser;
         while (true) {
             this.userInput = consoleIOUtil.defaultPrintWithInput("📌 메시지를 보내고 싶은 상대방의 번호를 알려주세요. (예시: 1): ");
             try {
                 int targetIdx = Integer.parseInt(this.userInput);
                 if (userDataService.checkUserInData(targetIdx)) {
-                    targetUser = userDataService.getUserData(targetIdx);
+                    tempNextUser = userDataService.getUserData(targetIdx);
+                    targetUser.setKName(tempNextUser.getKName());
+                    targetUser.setEName(tempNextUser.getEName());
+                    targetUser.setTrack(tempNextUser.getTrack());
                     return true;
                 } else {
                     this.userInput = consoleIOUtil.defaultPrintWithInput("""
@@ -153,6 +164,8 @@ public class MessageService {
         if (!validation.getValid())
             return false;
         targetUser.setTrack(validation.getTarget());
+
+        System.out.println(targetUser);
 
         if (!userDataService.checkUserInTrackingData(targetUser.getFullName())) {
             this.userInput = consoleIOUtil.defaultPrintWithInput("""

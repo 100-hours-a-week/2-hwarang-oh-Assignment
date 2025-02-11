@@ -16,7 +16,7 @@ import java.util.List;
  * UserDataUtil Class는 User Data를 불러오고 저장하는 역할을 하는 Class
  */
 public class UserDataUtil {
-    private static final String DATA_PATH = "automessage/src/data.json";
+    private static final String DATA_PATH = "src/data.json";
     private static final ArrayList<KTBUser> userData = new ArrayList<>();
 
     public static ArrayList<KTBUser> loadUserData() {
