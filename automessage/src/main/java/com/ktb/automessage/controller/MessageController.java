@@ -15,4 +15,8 @@ public class MessageController {
     public void sendProcess(KTBUser mainUser, KTBUser targetUser) {
         messageService.sendProcess(mainUser, targetUser);
     }
+
+    public void stopReplyThread() {
+        messageService.stopReplyThread();
+    }
 }
