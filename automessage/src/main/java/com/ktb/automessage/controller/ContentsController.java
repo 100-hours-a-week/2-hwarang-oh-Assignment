@@ -3,22 +3,25 @@ package com.ktb.automessage.controller;
 import java.util.Scanner;
 
 import com.ktb.automessage.domain.user.KTBUser;
+import com.ktb.automessage.service.UserDataService;
 import com.ktb.automessage.utils.ConsoleIOUtil;
 
 public class ContentsController {
     private String userInput;
-    private KTBUser mainUser;
-    private KTBUser targetUser;
-    private ConsoleIOUtil consoleIOUtil;
-    private UserController userController;
-    private MessageController messageController;
+    private final KTBUser mainUser;
+    private final KTBUser targetUser;
+    private final ConsoleIOUtil consoleIOUtil;
+    private final UserController userController;
+    private final UserDataService userDataService;
+    private final MessageController messageController;
 
     public ContentsController() {
-        this.consoleIOUtil = new ConsoleIOUtil(new Scanner(System.in));
-        this.userController = new UserController(consoleIOUtil);
-        this.messageController = new MessageController(consoleIOUtil);
         this.mainUser = new KTBUser();
         this.targetUser = new KTBUser();
+        this.consoleIOUtil = new ConsoleIOUtil(new Scanner(System.in));
+        this.userDataService = new UserDataService(consoleIOUtil);
+        this.userController = new UserController(consoleIOUtil, userDataService);
+        this.messageController = new MessageController(consoleIOUtil, userDataService);
     }
 
     public void start() throws InterruptedException {
@@ -28,8 +31,8 @@ public class ContentsController {
             return;
 
         welcomeMessage();
-        helpMessage();
         InfoMessage();
+        helpMessage();
         defaultProcess();
     }
 
@@ -86,9 +89,9 @@ public class ContentsController {
         consoleIOUtil.delayPrint("""
                 📌 메시지 종류
                 1️⃣ 기본 메시지 : 조금 어색하다면 안부 인사를 보내보는 것은 어떨까요? 😊
-                2️⃣ 감정 메시지 : 당신의 진심을 담은 메시지를 보낼 수 있습니다 💖
-                3️⃣ 커스텀 메시지 : 당신이 하고싶은 말을 듬뿍 담아서 메시지를 전달할 수 있어요 😊✨
-                """);
+                2️⃣ 감정 메시지 : %s의 진심을 담은 메시지를 보낼 수 있습니다 💖
+                3️⃣ 커스텀 메시지 : %s님이 하고싶은 말을 듬뿍 담아서 메시지를 전달할 수 있어요 😊✨
+                """.formatted(this.mainUser.getKName(), this.mainUser.getKName()));
     }
 
     private void helpMessage() {

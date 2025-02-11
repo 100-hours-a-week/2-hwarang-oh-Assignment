@@ -1,9 +1,8 @@
 package com.ktb.automessage;
 
 import com.ktb.automessage.controller.ContentsController;
-import com.ktb.automessage.exception.MemberNameException;
 import com.ktb.automessage.listener.DiscordListener;
-import com.ktb.automessage.utils.ContentsUtil;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -27,26 +26,12 @@ public class Main {
                 // .addEventListeners(new DiscordListener()).build();
 
                 // CommandListUpdateAction commands = jda.updateCommands();
-                // commands.addCommands(Commands.slash("send", "Makes the bot say what you
+                // commands.addCommands(Commands.s lash("send", "Makes the bot say what you
                 // Tell")
                 // .addOption(OptionType.USER, "target", "보낼 사람", true)
                 // .addOption(OptionType.INTEGER, "type", "1 : 감사, 2 : 칭찬, 3 : 응원", false)
                 // .addOption(OptionType.STRING, "content", "보내고 싶은 추가 메시지", false));
                 // commands.queue();
-
-                // CLI Version
-                // ContentsUtil contentProcess = new ContentsUtil();
-
-                // boolean isStart = contentProcess.startProcess();
-                // if (!isStart)
-                // return;
-                // boolean isLogin = contentProcess.loginProcess();
-                // if (!isLogin)
-                // return;
-                // contentProcess.welcomeMessage();
-                // contentProcess.InfoMessage();
-                // contentProcess.helpMessage();
-                // contentProcess.defaultProcess();
 
                 // CLI Version Revision
                 ContentsController contentsController = new ContentsController();

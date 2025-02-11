@@ -5,7 +5,7 @@ import com.ktb.automessage.utils.ConsoleIOUtil;
 import com.ktb.automessage.validation.Validation;
 
 public class UserValidator {
-    private ConsoleIOUtil consoleIOUtil;
+    private final ConsoleIOUtil consoleIOUtil;
     private String userInput;
 
     public UserValidator(ConsoleIOUtil consoleIOUtil) {

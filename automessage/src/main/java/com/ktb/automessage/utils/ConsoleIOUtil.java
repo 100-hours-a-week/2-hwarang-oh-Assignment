@@ -8,15 +8,12 @@ public class ConsoleIOUtil {
     private final Scanner scanner;
     private String userInput;
 
-    public ConsoleIOUtil() {
-        this.scanner = new Scanner(System.in);
-    }
-
     public ConsoleIOUtil(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public void defaultPrint(String message) {
+        System.out.println();
         System.out.println(message);
     }
 
@@ -25,10 +22,12 @@ public class ConsoleIOUtil {
     }
 
     public String defaultPrintWithInput(String prompt) {
+        System.out.println();
         return getInput(prompt);
     }
 
     public String defaultPrintWithInput(String prompt, Exception customException) {
+        System.out.println();
         return getInput(prompt, customException);
     }
 
@@ -37,6 +36,7 @@ public class ConsoleIOUtil {
     }
 
     private void printWithDelay(String message, int delay) throws InterruptedException {
+        System.out.println();
         for (char c : message.toCharArray()) {
             System.out.print(c);
             System.out.flush();
