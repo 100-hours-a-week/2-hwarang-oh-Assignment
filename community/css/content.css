@@ -1,0 +1,8 @@
+@import url("user.css");
+
+.container {
+  width: 40%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+}

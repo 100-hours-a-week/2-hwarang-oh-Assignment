@@ -1,0 +1,65 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.login-container .login-form {
+  display: flex;
+  text-align: left;
+  padding: 0 10px;
+  flex-direction: column;
+}
+
+.login-form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* 로그인 버튼 */
+.login-button {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #aca0eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.login-button:hover {
+  background-color: #8f77e0;
+}
+
+/* 회원가입 링크 */
+.register-link {
+  color: #6200ee;
+  margin-top: 15px;
+  font-size: 14px;
+  padding: 0 10px;
+  text-align: right;
+}
+
+.register-link a {
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
