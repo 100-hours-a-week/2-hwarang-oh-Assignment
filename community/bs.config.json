@@ -1,10 +1,6 @@
 {
   "server": {
     "baseDir": "./",
-    "routes": {
-      "/user/edit": "index.html",
-      "/community": "index.html",
-      "/register": "index.html"
-    }
+    "routes": {}
   }
 }

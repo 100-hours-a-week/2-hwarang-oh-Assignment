@@ -87,7 +87,6 @@
   flex-direction: column;
 }
 
-/** Profile Upload */
 .profile-upload {
   display: flex;
   flex-direction: column;
@@ -125,7 +124,6 @@
   border: 1px solid #ccc;
 }
 
-/** Helper Text */
 .error-message {
   color: red;
   height: 14px;
@@ -135,7 +133,6 @@
   margin-bottom: 10px;
 }
 
-/** Register Button */
 .register-button {
   background-color: #aca0eb;
   color: white;
@@ -157,7 +154,6 @@
   opacity: 0.5;
 }
 
-/** Login Link */
 .login-link {
   color: #6200ee;
   margin-top: 15px;
@@ -262,7 +258,67 @@
   display: block;
 }
 
-/* 버튼 숨김 */
 .hidden {
   display: none;
+}
+
+/* TYPE : Change Password Page CSS */
+.password-change-container {
+  width: 80%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-change-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.password-change-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-change-form .form-group {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.password-change-form label {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.password-change-form input {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.update-password-button {
+  background-color: #aca0eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  cursor: not-allowed;
+}
+
+.update-password-button.active {
+  background-color: #8f77e0;
+  cursor: pointer;
+}
+
+.update-password-button:disabled {
+  opacity: 0.5;
 }
