@@ -21,9 +21,9 @@ async function loadContent() {
 
   let content = routes[path];
   if (/^\/posts\/\d+$/.test(path)) {
-    content = routes["/community/posts/:id"];
+    content = routes["/posts/:id"];
   } else if (/^\/posts\/\d+\/edit$/.test(path)) {
-    content = routes["/community/posts/:id/edit"];
+    content = routes["/posts/:id/edit"];
   }
 
   // 404 처리
@@ -33,7 +33,13 @@ async function loadContent() {
 
   console.log(`로딩할 콘텐츠: ${content}`);
   await loadComponent("currentContents", content);
-  if (path === "/posts") renderPosts();
+  if (path === "/posts") {
+    renderPosts();
+  } else if (/^\/posts\/\d+$/.test(path)) {
+    renderPostDetail(); // 동적 게시글 상세
+  } else if (/^\/posts\/\d+\/edit$/.test(path)) {
+    renderEditPost(); // 게시글 수정
+  }
 }
 
 async function loadComponent(targetId, file) {
@@ -46,20 +52,71 @@ async function loadComponent(targetId, file) {
 async function renderPosts() {
   const postList = document.getElementById("postList");
   const template = document.getElementById("post-template");
-  const posts = await fetch("data/posts.json").then((res) => res.json());
+  const db = await fetch("data/db.json").then((res) => res.json());
+  const posts = db.posts;
+  const users = db.users;
 
   posts.forEach((post) => {
     const clone = document.importNode(template.content, true);
+    const author = users.find((user) => user.id === post.authorId);
+
     clone.querySelector("slot[name='title']").textContent = post.title;
     clone.querySelector("slot[name='date']").textContent = post.date;
-    clone.querySelector("slot[name='author']").textContent = post.author;
+    clone.querySelector("slot[name='author']").textContent = author.name;
     clone.querySelector("slot[name='likes']").textContent = post.likes;
-    clone.querySelector("slot[name='comments']").textContent = post.comments;
+    clone.querySelector("slot[name='comments']").textContent = post.comments.length;
     clone.querySelector("slot[name='views']").textContent = post.views;
-    clone.querySelector(".post-profile").src = post.profileImage;
+    clone.querySelector(".post-profile").src = author.profileImage;
     clone.querySelector(".post-card").addEventListener("click", function () {
       window.location.href = `/posts/${post.id}`;
     });
     postList.appendChild(clone);
+  });
+}
+
+async function renderPostDetail() {
+  const postId = window.location.pathname.split("/")[2];
+  const db = await fetch("/data/db.json").then((res) => res.json());
+  const post = db.posts.find((post) => post.id === Number(postId));
+  const author = db.users.find((user) => user.id === post.authorId);
+
+  document.getElementById("postTitle").textContent = post.title;
+  document.getElementById("postAuthor").textContent = author.name;
+  document.getElementById("postDate").textContent = post.date;
+  document.getElementById("postProfileImage").src = author.profileImage;
+  document.getElementById("postImage").src = post.postImage;
+  document.getElementById("postContent").textContent = post.content;
+  document.getElementById("postLikes").textContent = post.likes;
+  document.getElementById("postViews").textContent = post.views;
+  document.getElementById("postCommentsCount").textContent = post.comments.length;
+
+  const comments = db.comments
+    .filter((comment) => post.comments.includes(comment.id))
+    .map((comment) => ({
+      ...comment,
+      author: db.users.find((user) => user.id === comment.authorId),
+    }));
+  renderComments(comments);
+}
+
+function renderComments(comments) {
+  const commentsList = document.getElementById("commentsList");
+  const template = document.getElementById("comment-template");
+
+  if (comments.length === 0) {
+    commentsList.innerHTML = "<p class='no-comments'>등록된 댓글이 없습니다.</p>";
+    return;
+  }
+
+  comments.forEach((comment) => {
+    const clone = document.importNode(template.content, true);
+
+    // 슬롯에 데이터 삽입
+    clone.querySelector("slot[name='author']").textContent = comment.author.name;
+    clone.querySelector("slot[name='date']").textContent = comment.date;
+    clone.querySelector("slot[name='content']").textContent = comment.content;
+    clone.querySelector(".comment-profile").src = comment.author.profileImage;
+
+    commentsList.appendChild(clone);
   });
 }
