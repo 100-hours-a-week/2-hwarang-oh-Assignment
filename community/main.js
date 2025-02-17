@@ -9,12 +9,11 @@ const routes = {
   "/register": "/components/user/register.html",
 };
 
-async function loadComponent(targetId, file) {
-  const target = document.getElementById(targetId);
-  const response = await fetch(file);
-  const content = await response.text();
-  target.innerHTML = content;
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadComponent("header", "/components/header.html");
+  await loadComponent("content", "/components/content.html");
+  loadContent();
+});
 
 async function loadContent() {
   const path = window.location.pathname;
@@ -34,10 +33,33 @@ async function loadContent() {
 
   console.log(`로딩할 콘텐츠: ${content}`);
   await loadComponent("currentContents", content);
+  if (path === "/posts") renderPosts();
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadComponent("header", "/components/header.html");
-  await loadComponent("content", "/components/content.html");
-  loadContent();
-});
+async function loadComponent(targetId, file) {
+  const target = document.getElementById(targetId);
+  const response = await fetch(file);
+  const content = await response.text();
+  target.innerHTML = content;
+}
+
+async function renderPosts() {
+  const postList = document.getElementById("postList");
+  const template = document.getElementById("post-template");
+  const posts = await fetch("data/posts.json").then((res) => res.json());
+
+  posts.forEach((post) => {
+    const clone = document.importNode(template.content, true);
+    clone.querySelector("slot[name='title']").textContent = post.title;
+    clone.querySelector("slot[name='date']").textContent = post.date;
+    clone.querySelector("slot[name='author']").textContent = post.author;
+    clone.querySelector("slot[name='likes']").textContent = post.likes;
+    clone.querySelector("slot[name='comments']").textContent = post.comments;
+    clone.querySelector("slot[name='views']").textContent = post.views;
+    clone.querySelector(".post-profile").src = post.profileImage;
+    clone.querySelector(".post-card").addEventListener("click", function () {
+      window.location.href = `/posts/${post.id}`;
+    });
+    postList.appendChild(clone);
+  });
+}
