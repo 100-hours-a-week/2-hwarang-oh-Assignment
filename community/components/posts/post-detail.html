@@ -1,0 +1,61 @@
+<div class="post-detail-container">
+  <h2 id="postTitle" class="post-detail-title">글 제목</h2>
+
+  <!-- Post Detail Header -->
+  <div class="post-detail-header">
+    <div class="post-detail-meta">
+      <img
+        id="postProfileImage"
+        class="profile-image"
+        src="/image/placeholder.webp"
+        alt="Profile" />
+      <span id="postAuthor">post Author</span>
+      <span id="postDate">post Date</span>
+    </div>
+
+    <div class="post-detail-buttons">
+      <button id="editPost">수정</button>
+      <button id="deletePost">삭제</button>
+    </div>
+  </div>
+
+  <!-- Post Detail Image & Content -->
+  <div id="postImageContainer">
+    <img id="postImage" src="/image/placeholder.webp" alt="Post" />
+  </div>
+  <p id="postContent"></p>
+
+  <!-- Post Detail Info -->
+  <div class="post-detail-info">
+    <div><span id="postLikes">0</span> 좋아요</div>
+    <div><span id="postViews">0</span> 조회수</div>
+    <div><span id="postCommentsCount">0</span> 댓글</div>
+  </div>
+
+  <!-- Post Detail Comment Input -->
+  <div class="comment-section">
+    <textarea id="commentInput" placeholder="댓글을 남겨주세요!"></textarea>
+    <button id="submitComment" class="new-comment-button">댓글 등록</button>
+  </div>
+
+  <!-- Post Detail Comment List With Template -->
+  <div id="commentsList">
+    <template id="comment-template">
+      <div class="comment">
+        <div class="comment-header">
+          <div class="comment-meta">
+            <img src="" class="comment-profile" alt="Profile" />
+            <span class="comment-author"><slot name="author"></slot></span>
+            <span class="comment-date"><slot name="date"></slot></span>
+          </div>
+          <div class="comment-buttons">
+            <button class="edit-comment">수정</button>
+            <button class="delete-comment">삭제</button>
+          </div>
+        </div>
+
+        <p class="comment-content"><slot name="content"></slot></p>
+      </div>
+    </template>
+  </div>
+</div>

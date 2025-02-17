@@ -1,0 +1,365 @@
+/* IMP : Posts 기능과 관련된 CSS 파일입니다 */
+
+/* TYPE : Posts Page CSS */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.posts-container .posts-title {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.posts-container .posts-title span {
+  font-weight: 700;
+}
+
+.new-post-button {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #aca0eb;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: "Pretendard", sans-serif;
+}
+
+.new-post-button:hover {
+  background-color: #8f77e0;
+}
+.posts-container .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* TYPE : Post Template CSS */
+.post-card {
+  display: flex;
+  cursor: pointer;
+  padding: 15px 0;
+  background: white;
+  border-radius: 10px;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .post-header {
+  display: flex;
+  font-size: 14px;
+  padding: 0 15px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-card .post-header .post-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.post-card .post-header .post-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-user {
+  gap: 10px;
+  display: flex;
+  font-size: 15px;
+  padding: 0 15px;
+  font-weight: 700;
+  align-items: center;
+}
+
+.post-user img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* TYPE : Post Detail CSS */
+.post-detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-detail-container .post-detail-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/** Post Detail Header */
+.post-detail-container .post-detail-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-detail-header .post-detail-meta {
+  gap: 10px;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+
+.post-detail-meta .profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-detail-meta #postAuthor {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.post-detail-header .post-detail-buttons {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.post-detail-buttons button {
+  cursor: pointer;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: inherit;
+  color: #000;
+  background-color: white;
+  border: 1px solid #aca0eb;
+}
+
+.post-detail-buttons button:hover {
+  color: white;
+  background-color: #aca0eb;
+}
+
+/** Post Detail Image & Content */
+.post-detail-container #postImage {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#postContent {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
+}
+
+/** Post Detail Info */
+.post-detail-info {
+  gap: 10px;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.post-detail-info div {
+  gap: 5px;
+  width: 20%;
+  padding: 10px;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 16px;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail-info div span {
+  font-size: 20px;
+}
+
+/** Post Detail Comment Input */
+.comment-section {
+  gap: 10px;
+  display: flex;
+  padding: 10px;
+  border-radius: 8px;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-section #commentInput {
+  border: none;
+  resize: none;
+  outline: none;
+  height: 80px;
+  overflow: auto;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.new-comment-button {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: #aca0eb;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: "Pretendard", sans-serif;
+}
+
+.new-comment-button:hover {
+  background-color: #8f77e0;
+}
+
+/** Post Detail Comment List */
+.comment {
+  gap: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment .comment-header {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-header .comment-meta {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-meta .comment-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-meta .comment-author {
+  font-weight: 700;
+}
+
+.comment-meta .comment-date {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.comment-header .comment-buttons {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-buttons button {
+  cursor: pointer;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: inherit;
+  color: #000;
+  background-color: white;
+  border: 1px solid #aca0eb;
+}
+
+.comment-buttons button:hover {
+  color: white;
+  background-color: #aca0eb;
+}
+
+/* No Comments */
+.no-comments {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  padding: 20px;
+}
+
+/* TYPE : Post Edit CSS */
+.post-edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-edit-container .post-edit-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.post-edit-container .post-edit-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.post-edit-form label {
+  margin-bottom: 5px;
+}
+
+.post-edit-form .post-title {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-edit-form .post-content {
+  height: 150px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  resize: none;
+  outline: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-edit-form .file-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.post-edit-form #postImage {
+  border: none;
+}
+
+/* 수정하기 버튼 */
+#postEdit {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #a58df5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#postEdit:hover {
+  background-color: #9079e9;
+}

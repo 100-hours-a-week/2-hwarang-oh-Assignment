@@ -1,0 +1,183 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "차은우",
+      "email": "example1@gmail.com",
+      "profileImage": "/image/Cha.png"
+    },
+    {
+      "id": 2,
+      "name": "김지우",
+      "email": "example2@gmail.com",
+      "profileImage": "/image/Chu.png"
+    },
+    {
+      "id": 3,
+      "name": "시이나 마시로",
+      "email": "example3@gmail.com",
+      "profileImage": "/image/Mashiro.png"
+    },
+    {
+      "id": 4,
+      "name": "김지원",
+      "email": "example4@gmail.com",
+      "profileImage": "/image/Liz.png"
+    },
+    {
+      "id": 5,
+      "name": "무대 위의 김지원",
+      "email": "example5@gmail.com",
+      "profileImage": "/image/LizStage.png"
+    },
+    {
+      "id": 6,
+      "name": "렘과 람",
+      "email": "example6@gmail.com",
+      "profileImage": "/image/RemRam.png"
+    },
+    {
+      "id": 7,
+      "name": "아리마 카나",
+      "email": "example7@gmail.com",
+      "profileImage": "/image/Kana.png"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "꿈을 꾸는 소년",
+      "likes": 10,
+      "views": 100,
+      "authorId": 1,
+      "date": "2024-02-16 12:30:00",
+      "comments": [1, 2],
+      "postImage": "/image/Cha.png",
+      "content": "오늘도 나는 꿈을 꾼다. 찬란한 별빛이 쏟아지는 밤하늘 아래, 나는 어딘가로 향하는 여행자가 되어 있었다. 광휘를 두른 을 쥔 채, 눈앞에는 거대한 운명의 문이 펼쳐져 있다. 그 문을 지나면 나는 전설이 될 수도, 혹은 또 다른 시련을 맞이할 수도 있을 것이다. 하지만 망설일 수는 없다. 가슴 속에서 뜨거운 불꽃이 타오르고 있으니까. 나는 손을 뻗어 문을 밀어 올린다. 그 순간, 귓가에 익숙한 목소리가 들려온다. '기다리고 있었어. 네가 올 줄 알았어.' 눈을 뜨면, 현실 속의 아침. 하지만 나는 안다. 언젠가 그 세계로 다시 돌아갈 것이라는 것을. 그러니까 오늘도 나는 꿈을 꾼다."
+    },
+    {
+      "id": 2,
+      "title": "빛과 그림자",
+      "likes": 5,
+      "views": 50,
+      "authorId": 2,
+      "date": "2024-02-16 13:45:00",
+      "comments": [3, 4],
+      "postImage": "/image/Chu.png",
+      "content": "어둠 속에서 빛이 빛 속에서 어둠이 빛을 만나면 그들은 서로를 더욱 빛나게 한다. 그들은 서로를 이해하고, 서로를 받아들이며, 서로를 사랑 한다. 그들은 서로를 위해 존재하고, 서로를 위해 살아간다. 그들은 서로를 위해 죽고, 서로를 위해 부활한다. 그들은 서로를 위해 모든 것을 바치고, 서로를 위해 모든 것을 받아들인다. 그들은 서로를 위해 세상을 떠나고, 서로를 위해 세상을 창조한다. 그들은 서로를 위해 빛과 그림자가 되어, 세상을 빛과 그림자로 가득 채운다."
+    },
+    {
+      "id": 3,
+      "title": "바람의 노래",
+      "likes": 8,
+      "views": 80,
+      "authorId": 3,
+      "date": "2024-02-16 14:00:00",
+      "comments": [5, 6],
+      "postImage": "/image/Mashiro.png",
+      "content": "바람이 불어오는 소리를 들으면 나는 언제나 행복해진다. 그 소리는 나에게 자유를 상기시키고, 나에게 용기를 불어넣어 준다. 그 소리는 나에게 희망을 전하고, 나에게 사랑을 노래한다. 그 소리는 나에게 모든 것을 알려주고, 나에게 모든 것을 가르친다. 그 소리는 나에게 세상을 열어주고, 나에게 세상을 보여준다. 그 소리는 나에게 바람의 노래를 들려주고, 나에게 바람의 노래를 불러준다."
+    },
+    {
+      "id": 4,
+      "title": "빛나는 별",
+      "likes": 8,
+      "views": 80,
+      "authorId": 4,
+      "date": "2024-02-16 14:00:00",
+      "comments": [7, 8],
+      "postImage": "/image/Evening.png",
+      "content": "어둠 속에서 빛나는 별이 있다. 그 별은 어둠을 밝히고, 빛을 전파한다. 그 별은 세상을 밝게 하고, 우주를 빛낸다. 그 별은 모든 것을 비추고, 모든 것을 밝힌다. 그 별은 세상을 구원하고, 우주를 살리며, 모든 것을 새롭게 만든다. 그 별은 어둠을 뚫고, 빛을 내며, 모든 것을 살리고, 모든 것을 새롭게 만든다."
+    },
+    {
+      "id": 5,
+      "title": "빛나는 미래",
+      "likes": 8,
+      "views": 80,
+      "authorId": 5,
+      "date": "2024-02-16 15:00:00",
+      "comments": [],
+      "postImage": "/image/Liz.png",
+      "content": "공란"
+    },
+    {
+      "id": 6,
+      "title": "빛나는 과거",
+      "likes": 8,
+      "views": 80,
+      "authorId": 6,
+      "date": "2024-02-16 16:00:00",
+      "comments": [],
+      "postImage": "/image/RemRam.png",
+      "content": "공란"
+    },
+    {
+      "id": 7,
+      "title": "빛나는 현재",
+      "likes": 8,
+      "views": 80,
+      "authorId": 7,
+      "date": "2024-02-16 14:00:00",
+      "comments": [],
+      "postImage": "/image/Kana.png",
+      "content": "공란"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "authorId": 2,
+      "date": "2024-02-16 14:10:00",
+      "content": "좋은 글이네요!"
+    },
+    {
+      "id": 2,
+      "postId": 1,
+      "authorId": 3,
+      "date": "2024-02-16 15:00:00",
+      "content": "재미있게 읽었습니다."
+    },
+    {
+      "id": 3,
+      "postId": 2,
+      "authorId": 3,
+      "date": "2024-02-17 16:00:00",
+      "content": "이것도 좋네요!"
+    },
+    {
+      "id": 4,
+      "postId": 2,
+      "authorId": 4,
+      "date": "2024-02-17 16:00:00",
+      "content": "눈물이 흐릅니다.."
+    },
+    {
+      "id": 5,
+      "postId": 3,
+      "authorId": 4,
+      "date": "2024-02-17 16:00:00",
+      "content": "이런 내용도 너무 좋네요!"
+    },
+    {
+      "id": 6,
+      "postId": 3,
+      "authorId": 5,
+      "date": "2024-02-17 16:00:00",
+      "content": "이런 내용도 너무 좋네요!"
+    },
+    {
+      "id": 7,
+      "postId": 4,
+      "authorId": 6,
+      "date": "2024-02-17 16:00:00",
+      "content": "이런 내용도 너무 좋네요!"
+    },
+    {
+      "id": 8,
+      "postId": 4,
+      "authorId": 7,
+      "date": "2024-02-17 16:00:00",
+      "content": "이런 내용도 너무 좋네요!"
+    }
+  ]
+}
