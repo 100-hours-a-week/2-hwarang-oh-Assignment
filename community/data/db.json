@@ -4,42 +4,49 @@
       "id": 1,
       "name": "차은우",
       "email": "example1@gmail.com",
+      "password": "example1*",
       "profileImage": "/image/Cha.png"
     },
     {
       "id": 2,
       "name": "김지우",
       "email": "example2@gmail.com",
+      "password": "example2*",
       "profileImage": "/image/Chu.png"
     },
     {
       "id": 3,
       "name": "시이나 마시로",
       "email": "example3@gmail.com",
+      "password": "example3*",
       "profileImage": "/image/Mashiro.png"
     },
     {
       "id": 4,
       "name": "김지원",
       "email": "example4@gmail.com",
+      "password": "example4*",
       "profileImage": "/image/Liz.png"
     },
     {
       "id": 5,
       "name": "무대 위의 김지원",
       "email": "example5@gmail.com",
+      "password": "example5*",
       "profileImage": "/image/LizStage.png"
     },
     {
       "id": 6,
       "name": "렘과 람",
       "email": "example6@gmail.com",
+      "password": "example6*",
       "profileImage": "/image/RemRam.png"
     },
     {
       "id": 7,
       "name": "아리마 카나",
       "email": "example7@gmail.com",
+      "password": "example7*",
       "profileImage": "/image/Kana.png"
     }
   ],

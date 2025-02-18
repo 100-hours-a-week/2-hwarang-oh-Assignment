@@ -16,7 +16,7 @@
   font-weight: 700;
 }
 
-.posts-container .new-post-button {
+.posts-container .create-post-button {
   color: white;
   font-size: 16px;
   font-weight: 700;
@@ -29,7 +29,7 @@
   font-family: "Pretendard", sans-serif;
 }
 
-.posts-container .new-post-button:hover {
+.posts-container .create-post-button:hover {
   background-color: #8f77e0;
 }
 .posts-container .post-list {
