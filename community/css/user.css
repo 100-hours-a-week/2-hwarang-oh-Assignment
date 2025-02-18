@@ -12,6 +12,7 @@
 /* TYPE : Change Password Page CSS */
 @import url("user/change-password.css");
 
+/* TYPE : Common Toast Message CSS */
 .toast {
   position: fixed;
   bottom: 20px;

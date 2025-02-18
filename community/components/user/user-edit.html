@@ -4,14 +4,14 @@
   <!-- User Edit Form -->
   <form class="user-edit-form">
     <div class="profile-edit">
-      <label for="profileImage" class="profile-edit-placeholder">
+      <label for="editImage" class="profile-edit-placeholder">
         <p>프로필 사진*</p>
         <div class="image-container">
           <img id="previewImage" src="/image/placeholder.webp" alt="Profile" />
           <span class="change-text">변경</span>
         </div>
       </label>
-      <input type="file" id="profileImage" accept="image/*" hidden />
+      <input type="file" id="editImage" accept="image/*" hidden />
     </div>
 
     <label for="email">이메일</label>
@@ -27,5 +27,5 @@
     <a href="/">회원 탈퇴</a>
   </div>
 
-  <div id="toastMessage" class="toast show">수정 완료</div>
+  <div id="toastMessage" class="toast">수정 완료</div>
 </div>

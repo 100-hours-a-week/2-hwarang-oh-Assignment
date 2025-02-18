@@ -1,3 +1,5 @@
+/* IMP : Contents 화면에 관련된 CSS 파일입니다 */
+/* TODO : User / Post 기능에 따라, 화면 넓이에 대한 분기 */
 @import url("user.css");
 @import url("post.css");
 
