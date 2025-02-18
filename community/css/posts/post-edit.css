@@ -1,0 +1,72 @@
+.post-edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-edit-container .post-edit-title {
+  font-size: 32px;
+  font-weight: 700;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.post-edit-container .post-edit-form {
+  gap: 20px;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  flex-direction: column;
+}
+
+.post-edit-form .post-title {
+  border: none;
+  outline: none;
+  font: inherit;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-edit-form .post-content {
+  height: 200px;
+  padding: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  border: none;
+  resize: none;
+  outline: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-edit-form .file-upload {
+  gap: 10px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.post-edit-form .file-upload .file-choose {
+  padding: 8px;
+  color: #000;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: #ccc;
+  border: 1px solid #000;
+}
+
+.post-edit-form #postEdit {
+  width: 50%;
+  padding: 10px;
+  color: white;
+  background-color: #aca0eb;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+  align-self: center;
+}
+
+.post-edit-form #postEdit:hover {
+  background-color: #8f77e0;
+}

@@ -3,18 +3,21 @@
 
   <!-- User Edit Form -->
   <form class="user-edit-form">
-    <div class="profile-upload">
-      <label for="profileImage">프로필 사진</label>
-      <div class="profile-placeholder">
-        <img id="previewImage" src="/image/placeholder.webp" alt="Profile" />
-      </div>
+    <div class="profile-edit">
+      <label for="profileImage" class="profile-edit-placeholder">
+        <p>프로필 사진*</p>
+        <div class="image-container">
+          <img id="previewImage" src="/image/placeholder.webp" alt="Profile" />
+          <span class="change-text">변경</span>
+        </div>
+      </label>
       <input type="file" id="profileImage" accept="image/*" hidden />
     </div>
 
-    <label for="email">이메일 *</label>
+    <label for="email">이메일</label>
     <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
 
-    <label for="nickname">닉네임*</label>
+    <label for="nickname">닉네임</label>
     <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required />
 
     <button type="button" id="userEditButton" class="user-edit-button" disabled>수정하기</button>

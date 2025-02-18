@@ -3,7 +3,7 @@ const routes = {
   "/posts": "/components/posts/posts.html",
   "/posts/:id": "/components/posts/post-detail.html",
   "/posts/:id/edit": "/components/posts/post-edit.html",
-  "/posts/new": "/components/posts/new-post.html",
+  "/posts/create": "/components/posts/post-create.html",
   "/user/edit": "/components/user/user-edit.html",
   "/user/change-password": "/components/user/change-password.html",
   "/register": "/components/user/register.html",

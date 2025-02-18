@@ -1,0 +1,98 @@
+/* TYPE : Register Page CSS */
+.register-container {
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.register-container .register-title {
+  font-size: 32px;
+  font-weight: 700;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.register-container .register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/** Profile Image */
+.register-form .profile-upload .profile-placeholder {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+}
+
+.register-form .profile-upload .profile-placeholder img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  align-self: center;
+}
+
+/** Input Fields */
+.register-form label {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.register-form input {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+.register-form .error-message {
+  color: red;
+  height: 14px;
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+/** Register Button */
+.register-form .register-button {
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  line-height: normal;
+  cursor: not-allowed;
+  background-color: #aca0eb;
+  font-family: inherit;
+}
+
+.register-form .register-button.active {
+  background-color: #8f77e0;
+  cursor: pointer;
+}
+
+.register-form .register-button:disabled {
+  opacity: 0.5;
+}
+
+/** Login Link */
+.register-container .login-link {
+  color: #6200ee;
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.register-container .login-link a {
+  text-decoration: none;
+}
+
+.register-container .login-link a:hover {
+  text-decoration: underline;
+}

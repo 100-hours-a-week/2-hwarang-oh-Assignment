@@ -1,0 +1,87 @@
+/* TYPE : Posts Page CSS */
+.posts-container {
+  gap: 15px;
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.posts-container .posts-title {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.posts-container .posts-title span {
+  font-weight: 700;
+}
+
+.posts-container .new-post-button {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #aca0eb;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: "Pretendard", sans-serif;
+}
+
+.posts-container .new-post-button:hover {
+  background-color: #8f77e0;
+}
+.posts-container .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* TYPE : Post Template CSS */
+.post-card {
+  display: flex;
+  cursor: pointer;
+  padding: 15px 0;
+  background: white;
+  border-radius: 10px;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .post-header {
+  display: flex;
+  font-size: 14px;
+  padding: 0 15px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-card .post-header .post-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.post-card .post-header .post-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-card .post-user {
+  gap: 10px;
+  display: flex;
+  font-size: 15px;
+  padding: 0 15px;
+  font-weight: 700;
+  align-items: center;
+}
+
+.post-card .post-user img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
