@@ -1,0 +1,13 @@
+/* IMP : Post 기능과 관련된 CSS 파일입니다 */
+
+/* TYPE : Posts Page CSS */
+@import url("posts/posts.css");
+
+/* TYPE : Post Detail CSS */
+@import url("posts/post-detail.css");
+
+/* TYPE : Post Edit CSS */
+@import url("posts/post-edit.css");
+
+/* TYPE : Post Create CSS */
+@import url("posts/post-create.css");

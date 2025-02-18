@@ -1,0 +1,68 @@
+/* TYPE : Login Page CSS */
+.login-container {
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.login-container .login-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.login-container .login-form {
+  display: flex;
+  padding: 0 10px;
+  text-align: left;
+  flex-direction: column;
+}
+
+.login-form label {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #000;
+}
+
+.login-form .login-button {
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: inherit;
+  background-color: #aca0eb;
+}
+
+.login-form .login-button:hover {
+  background-color: #8f77e0;
+}
+
+.login-container .register-link {
+  padding: 0 10px;
+  font-size: 15px;
+  color: #6200ee;
+  margin-top: 15px;
+  text-align: right;
+}
+
+.login-container .register-link a {
+  text-decoration: none;
+}
+
+.login-container .register-link a:hover {
+  text-decoration: underline;
+}
