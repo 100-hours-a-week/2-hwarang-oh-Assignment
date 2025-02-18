@@ -61,11 +61,11 @@ async function loadContent() {
   // TYPE : 로그인 상태에서는 / 경로로 접근 시, /posts로 Redirect
   if (path === "/" && getCurrentUser()) {
     window.location.href = "/posts";
-    return;
   }
 
   // * 1. 먼저 URL Path에 맞는 Component를 Loading한다.
   await loadComponent("currentContents", route.path);
+
   // * 2. 로딩된 Component에 맞는 Page를 Rendering한다.
   if (route.render) route.render();
 }
@@ -76,12 +76,12 @@ async function loadContent() {
 function updateHeader() {
   const user = getCurrentUser();
   const currentPath = window.location.pathname;
-  const backwardButton = document.getElementById("backward");
+  const backward = document.getElementById("backward");
   const profileImage = document.getElementById("profileImage");
   const dropdownMenu = document.getElementById("dropdownMenu");
 
-  if (currentPath === "/" || currentPath === "/posts") backwardButton.style.visibility = "hidden";
-  else backwardButton.style.visibility = "show";
+  if (currentPath === "/" || currentPath === "/posts") backward.style.visibility = "hidden";
+  else backward.style.visibility = "visible";
 
   if (user) {
     profileImage.src = user.profileImage;
