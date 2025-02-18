@@ -1,0 +1,215 @@
+/* TYPE : Post Detail CSS */
+.post-detail-container {
+  gap: 20px;
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.post-detail-container .post-detail-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/** Post Detail Header */
+.post-detail-container .post-detail-header {
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-detail-header .post-detail-meta {
+  gap: 10px;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+
+.post-detail-meta .profile-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post-detail-meta #postAuthor {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.post-detail-header .post-detail-buttons {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.post-detail-buttons button {
+  color: #000;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 400;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  background-color: white;
+  border: 1px solid #aca0eb;
+}
+
+.post-detail-buttons button:hover {
+  color: white;
+  background-color: #aca0eb;
+}
+
+/** Post Detail Image & Content */
+.post-detail-container #postImage {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.post-detail-container #postContent {
+  line-height: 2;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/** Post Detail Info */
+.post-detail-container .post-detail-info {
+  gap: 10px;
+  display: flex;
+  font-size: 14px;
+  padding-bottom: 20px;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-detail-container .post-detail-info div {
+  gap: 5px;
+  width: 20%;
+  padding: 10px;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 16px;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail-container .post-detail-info div span {
+  font-size: 20px;
+}
+
+/** Post Detail Comment Input */
+.post-detail-container .comment-section {
+  gap: 10px;
+  display: flex;
+  padding: 10px;
+  border-radius: 8px;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail-container .comment-section #commentInput {
+  border: none;
+  resize: none;
+  outline: none;
+  height: 80px;
+  overflow: auto;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment-section .new-comment-button {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: #aca0eb;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: "Pretendard", sans-serif;
+}
+
+.comment-section .new-comment-button:hover {
+  background-color: #8f77e0;
+}
+
+/** Post Detail Comment List */
+.comment {
+  gap: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-comments {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  padding: 20px;
+}
+
+.comment .comment-header {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-header .comment-meta {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-meta .comment-profile {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.comment-meta .comment-author {
+  font-weight: 700;
+}
+
+.comment-meta .comment-date {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.comment-header .comment-buttons {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-header .comment-buttons button {
+  cursor: pointer;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: inherit;
+  color: #000;
+  background-color: white;
+  border: 1px solid #aca0eb;
+}
+
+.comment-header .comment-buttons button:hover {
+  color: white;
+  background-color: #aca0eb;
+}
+
+.comment .comment-content {
+  font-size: 15px;
+  font-weight: 400;
+  padding-left: 50px;
+}

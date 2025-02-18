@@ -1,8 +1,12 @@
-<div class="post-edit-container">
-  <h2 class="post-edit-title">게시글 작성</h2>
-  <form class="post-edit-form">
+<div class="post-create-container">
+  <h2 class="post-create-title">게시글 작성</h2>
+  <form class="post-create-form">
     <label for="postTitle">제목*</label>
-    <input type="text" id="postTitle" placeholder="제목을 입력하세요" class="post-title" />
+    <input
+      type="text"
+      id="postTitle"
+      placeholder="제목을 입력하세요 (최대 26글자)"
+      class="post-title" />
 
     <label for="postContent">내용*</label>
     <textarea id="postContent" placeholder="내용을 입력하세요" class="post-content"></textarea>
@@ -11,11 +15,11 @@
     <div class="file-upload">
       <label>
         <input type="file" id="postImage" hidden />
-        <span>파일 선택</span>
+        <span class="file-choose">파일 선택</span>
       </label>
       <span id="fileLabel">기존 파일 명</span>
     </div>
 
-    <button id="postEdit">수정하기</button>
+    <button id="postEdit">완료</button>
   </form>
 </div>
