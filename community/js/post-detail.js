@@ -1,3 +1,8 @@
+import { showDeleteConfirmModal } from "./modal.js";
+
+/**
+ * IMP : Rendering Post Detail Page
+ */
 export async function renderPostDetail() {
   const postId = window.location.pathname.split("/")[2];
   const db = await fetch("/data/db.json").then((res) => res.json());
@@ -16,6 +21,9 @@ export async function renderPostDetail() {
   document.getElementById("editPost").addEventListener("click", function () {
     window.location.href = `/posts/${postId}/edit`;
   });
+  document.getElementById("deletePost").addEventListener("click", function () {
+    showDeleteConfirmModal();
+  });
 
   const comments = db.comments
     .filter((comment) => post.comments.includes(comment.id))
@@ -26,6 +34,11 @@ export async function renderPostDetail() {
   renderComments(comments);
 }
 
+/**
+ * IMP : render Comment List
+ * @param {*} comments
+ * @returns
+ */
 function renderComments(comments) {
   const commentsList = document.getElementById("commentsList");
   const template = document.getElementById("comment-template");

@@ -1,7 +1,7 @@
 import { setCurrentUser, getCurrentUser } from "../main.js";
 
 /**
- * IMP : 유저 정보 수정 페이지
+ * IMP : Rendering User Edit Page
  */
 export function renderUserEditPage() {
   const userEditForm = document.querySelector(".user-edit-form");
@@ -65,7 +65,7 @@ export function renderUserEditPage() {
 }
 
 /**
- * IMP : 비밀번호 변경 페이지
+ * IMP : Rendering Password Change Page
  */
 export function renderPasswordChangePage() {
   const passwordInput = document.getElementById("password");
