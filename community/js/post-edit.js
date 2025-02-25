@@ -1,3 +1,6 @@
+/**
+ * IMP : Rendering Edit Page
+ */
 export async function renderEditPost() {
   const postId = window.location.pathname.split("/")[2];
   const db = await fetch("/data/db.json").then((res) => res.json());

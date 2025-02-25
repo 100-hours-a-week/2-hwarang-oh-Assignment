@@ -1,3 +1,6 @@
+/**
+ * IMP : Rendering Post List Page
+ */
 export async function renderPosts() {
   const postList = document.getElementById("postList");
   const template = document.getElementById("post-template");
