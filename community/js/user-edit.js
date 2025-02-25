@@ -65,7 +65,14 @@ export function renderUserEditPage() {
   });
 
   userDeleteLink.addEventListener("click", function () {
-    showDeleteConfirmModal({ type: "user", id: user.id });
+    showDeleteConfirmModal({
+      type: "user",
+      id: user.id,
+      onDelete: () => {
+        setCurrentUser(null);
+        window.location.href = "/";
+      },
+    });
   });
 }
 

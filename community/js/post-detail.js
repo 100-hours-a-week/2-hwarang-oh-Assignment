@@ -56,7 +56,13 @@ function renderPostButton(currentUser, post) {
       window.location.href = `/posts/${post.id}/edit`;
     });
     deletePostBtn.addEventListener("click", function () {
-      showDeleteConfirmModal({ type: "post", id: post.id });
+      showDeleteConfirmModal({
+        type: "post",
+        id: post.id,
+        onDelete: () => {
+          window.location.href = "/posts";
+        },
+      });
     });
   } else {
     editPostBtn.style.display = "none";
