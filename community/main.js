@@ -28,6 +28,7 @@ const USER_STORAGE_KEY = "currentUser";
 export function getCurrentUser() {
   return JSON.parse(sessionStorage.getItem(USER_STORAGE_KEY));
 }
+
 export function setCurrentUser(user) {
   sessionStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
 }
