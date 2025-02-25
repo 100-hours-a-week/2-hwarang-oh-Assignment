@@ -1,4 +1,5 @@
 import { setCurrentUser, getCurrentUser } from "../main.js";
+import { showDeleteConfirmModal } from "./modal.js";
 
 /**
  * IMP : Rendering User Edit Page
@@ -10,9 +11,9 @@ export function renderUserEditPage() {
   const emailInput = document.getElementById("email");
   const nicknameInput = document.getElementById("nickname");
   const userEditButton = document.getElementById("userEditButton");
+  const userDeleteLink = document.querySelector(".user-delete-link");
   const toastMessage = document.getElementById("toastMessage");
   const user = getCurrentUser();
-  console.log(user);
 
   // * Session Storage에 저장된 User 정보를 Form에 채워넣기
   emailInput.value = user.email;
@@ -61,6 +62,10 @@ export function renderUserEditPage() {
       toastMessage.classList.remove("show");
       window.location.href = "/posts"; // 홈으로 리디렉션
     }, 1000);
+  });
+
+  userDeleteLink.addEventListener("click", function () {
+    showDeleteConfirmModal({ type: "user", id: user.id });
   });
 }
 
