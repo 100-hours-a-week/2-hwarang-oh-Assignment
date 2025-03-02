@@ -19,6 +19,7 @@
   margin-top: 5px;
   transition: opacity 0.2s ease-in-out;
 }
+
 .hidden {
   opacity: 0;
   visibility: hidden;
