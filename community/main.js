@@ -8,9 +8,12 @@ import { renderLoginPage } from './js/login.js';
 import { renderRegister } from './js/register.js';
 import { renderUserEditPage, renderPasswordChangePage } from './js/user-edit.js';
 
+// IMP : Header 기능 Import
+import { updateHeader } from './js/header.js';
+
 // IMP : Routing
 const routes = {
-  '/': { path: 'components/user/login.html', render: () => renderLoginPage(USER_STORAGE_KEY) },
+  '/': { path: 'components/user/login.html', render: () => renderLoginPage() },
   '/posts': { path: '/components/posts/posts.html', render: renderPosts },
   '/posts/:id': { path: '/components/posts/post-detail.html', render: renderPostDetail },
   '/posts/:id/edit': { path: '/components/posts/post-edit.html', render: renderEditPost },
@@ -23,7 +26,7 @@ const routes = {
   '/register': { path: '/components/user/register.html', render: renderRegister },
 };
 
-// IMP : Get/Set Current User
+// IMP : Get/Set/Remove Current User
 const USER_STORAGE_KEY = 'currentUser';
 export function getCurrentUser() {
   return JSON.parse(sessionStorage.getItem(USER_STORAGE_KEY));
@@ -31,6 +34,10 @@ export function getCurrentUser() {
 
 export function setCurrentUser(user) {
   sessionStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+}
+
+export function removeCurrentUser() {
+  sessionStorage.removeItem(USER_STORAGE_KEY);
 }
 
 // IMP : Route 된 Page Loading
@@ -69,47 +76,4 @@ async function loadContent() {
 
   // * 2. 로딩된 Component에 맞는 Page를 Rendering한다.
   if (route.render) route.render();
-}
-
-// IMP: Header Rendering 및 Event 처리
-function updateHeader() {
-  const user = getCurrentUser();
-  const currentPath = window.location.pathname;
-  const backward = document.getElementById('backward');
-  const profileImage = document.getElementById('profileImage');
-  const dropdownMenu = document.getElementById('dropdownMenu');
-
-  if (currentPath === '/' || currentPath === '/posts') backward.style.visibility = 'hidden';
-  else backward.style.visibility = 'visible';
-
-  if (user) {
-    profileImage.src = user.profileImage;
-    profileImage.style.visibility = 'visible';
-  } else profileImage.style.visibility = 'hidden';
-
-  profileImage.addEventListener('click', function (event) {
-    event.stopPropagation();
-    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-  });
-
-  document.addEventListener('click', function (event) {
-    if (!profileImage.contains(event.target) && !dropdownMenu.contains(event.target)) {
-      dropdownMenu.style.display = 'none';
-    }
-  });
-
-  const logoutButton = document.querySelector("#dropdownMenu a[href='/']");
-  if (logoutButton) {
-    logoutButton.addEventListener('click', function (event) {
-      event.preventDefault();
-      logout();
-    });
-  }
-}
-
-// IMP : 로그아웃 처리
-function logout() {
-  sessionStorage.removeItem(USER_STORAGE_KEY);
-  alert('로그아웃 되었습니다.');
-  window.location.href = '/';
 }

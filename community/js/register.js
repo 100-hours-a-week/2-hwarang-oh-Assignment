@@ -3,14 +3,26 @@ import {
   validatePassword,
   validateConfirmPassword,
   validateNickname,
-} from './validator.js';
+} from './util_validator.js';
+
+import { getDB, setDB, registerUser } from './util_database.js';
 
 /**
  * IMP : 회원 가입 처리
  */
 export async function renderRegister() {
-  const db = await fetch('/data/db.json').then((res) => res.json());
-  const users = db.users;
+  if (!getDB()) {
+    const db = await fetch('/data/db.json').then((res) => res.json());
+    setDB(db);
+  }
+
+  const newUser = {
+    nickname: '',
+    email: '',
+    password: '',
+    profileImage: '',
+  };
+
   const validationState = {
     email: false,
     password: false,
@@ -34,19 +46,16 @@ export async function renderRegister() {
 
   // TYPE : 회원가입 버튼 클릭 시
   registerButton.addEventListener('click', async function () {
-    const email = document.getElementById('email').value.trim();
-    const nickname = document.getElementById('nickname').value.trim();
+    newUser.email = document.getElementById('email').value.trim();
+    newUser.password = document.getElementById('password').value.trim();
+    newUser.nickname = document.getElementById('nickname').value.trim();
+    newUser.profileImage = document.getElementById('previewImage').src;
 
-    if (users.find((user) => user.email === email)) {
-      alert('이미 가입된 이메일입니다.');
+    let registerResponse = registerUser(newUser);
+    if (!registerResponse.success) {
+      alert(registerResponse.message);
       return;
     }
-
-    if (users.find((user) => user.name === nickname)) {
-      alert('이미 사용 중인 닉네임입니다.');
-      return;
-    }
-
     alert('회원가입이 완료되었습니다!');
     window.location.href = '/';
   });
