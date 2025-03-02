@@ -37,3 +37,34 @@ export function validatePassword(input) {
   }
   return { valid: true, message: '' };
 }
+
+export function validateConfirmPassword(passwordInput, confirmPasswordInput) {
+  const password = passwordInput.value.trim();
+  const confirmPassword = confirmPasswordInput.value.trim();
+
+  if (!confirmPassword) {
+    return { valid: false, message: '* 비밀번호를 다시 입력해주세요.' };
+  }
+  if (password !== confirmPassword) {
+    return { valid: false, message: '* 비밀번호가 일치하지 않습니다.' };
+  }
+  return { valid: true, message: '' };
+}
+
+export function validateNickname(input) {
+  const value = input.value.trim();
+  const hasWhitespace = /\s/.test(value);
+  const isTooLong = value.length > 10;
+
+  if (!value) {
+    return { valid: false, message: '* 닉네임을 입력해주세요.' };
+  }
+  if (hasWhitespace) {
+    return { valid: false, message: '* 띄어쓰기를 없애주세요.' };
+  }
+  if (isTooLong) {
+    return { valid: false, message: '* 닉네임은 최대 10자까지 작성 가능합니다.' };
+  }
+
+  return { valid: true, message: '' };
+}
