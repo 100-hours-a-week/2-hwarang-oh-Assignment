@@ -1,7 +1,7 @@
 /* IMP : Contents 화면에 관련된 CSS 파일입니다 */
 /* TODO : User / Post 기능에 따라, 화면 넓이에 대한 분기 */
-@import url("user.css");
-@import url("post.css");
+@import url('user.css');
+@import url('post.css');
 
 .container {
   width: 25%;
@@ -10,6 +10,18 @@
   margin: 0 auto;
   flex-direction: column;
   /* justify-content: center; */
+}
+
+/* IMP : Helper Text */
+.helper-text {
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
+  transition: opacity 0.2s ease-in-out;
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* IMP : Modal CSS */
