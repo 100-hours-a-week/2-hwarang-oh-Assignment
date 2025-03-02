@@ -1,17 +1,40 @@
+import { getPost, updatePost } from './util_database.js';
+
 /**
  * IMP : Rendering Edit Page
  */
-export async function renderEditPost() {
-  const postId = window.location.pathname.split("/")[2];
-  const db = await fetch("/data/db.json").then((res) => res.json());
-  const post = db.posts.find((post) => post.id === Number(postId));
+export function renderEditPost() {
+  const postId = window.location.pathname.split('/')[2];
+  const post = getPost(postId);
 
-  document.getElementById("postTitle").value = post.title;
-  document.getElementById("postContent").value = post.content;
-  document.getElementById("fileLabel").textContent = post.postImage;
+  const postTitle = document.getElementById('postTitle');
+  const postContent = document.getElementById('postContent');
+  const postImage = document.getElementById('postImage');
+  const fileLabel = document.getElementById('fileLabel');
+  const postEditButton = document.getElementById('postEdit');
 
-  document.getElementById("postImage").addEventListener("change", function (event) {
-    const fileName = event.target.files[0] ? event.target.files[0].name : "파일을 선택해주세요";
-    document.getElementById("fileLabel").textContent = fileName;
+  postTitle.value = post.title;
+  postContent.value = post.content;
+  fileLabel.textContent = post.postImage ? '기존 이미지 유지' : '파일을 선택해주세요';
+
+  postImage.addEventListener('change', function () {
+    const file = postImage.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        post.postImage = e.target.result;
+        fileLabel.textContent = file.name;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  postEditButton.addEventListener('click', async function () {
+    let updatePostResponse = updatePost(postId, post);
+    if (!updatePostResponse.success) {
+      alert('게시글 수정에 실패했습니다.');
+      return;
+    }
+    window.location.href = `/posts/${postId}`;
   });
 }

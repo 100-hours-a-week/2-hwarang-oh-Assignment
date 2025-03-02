@@ -7,13 +7,14 @@ import { validateNickname, validatePassword, validateConfirmPassword } from './u
  * IMP : Rendering User Edit Page
  */
 export function renderUserEditPage() {
+  const user = getCurrentUser();
   const nicknameInput = document.getElementById('nickname');
   const toastMessage = document.getElementById('toastMessage');
   const previewImage = document.getElementById('previewImage');
   const userEditButton = document.getElementById('userEditButton');
   const userDeleteLink = document.querySelector('.user-delete-link');
 
-  const user = getCurrentUser();
+  // IMP : User 정보 수정을 위한 Validation State 설정
   const validationState = {
     profile: false,
     nickname: false,
@@ -26,7 +27,7 @@ export function renderUserEditPage() {
   }
   setupUserEdit(validationState, updateUserEditButtonState, user);
 
-  // * User 정보 수정 버튼 클릭 시, Session Storage에 저장된 User 정보 업데이트
+  // IMP : User 정보 수정 버튼 클릭 시, Session Storage, DB 정보 업데이트
   userEditButton.addEventListener('click', function () {
     const updatedUser = {
       email: user.email,
@@ -44,6 +45,7 @@ export function renderUserEditPage() {
     }, 1000);
   });
 
+  // IMP : User 삭제 버튼 클릭 시, Modal 띄우기 => CallBack : deleteUser()
   userDeleteLink.addEventListener('click', function () {
     showDeleteConfirmModal({
       type: 'user',
@@ -57,6 +59,7 @@ export function renderUserEditPage() {
   });
 }
 
+// IMP : User 정보 수정을 위한 Validation State 설정
 function setupUserEdit(validationState, updateUserEditButtonState, user) {
   const emailInput = document.getElementById('email');
   const nicknameInput = document.getElementById('nickname');
@@ -97,14 +100,15 @@ function setupUserEdit(validationState, updateUserEditButtonState, user) {
  * IMP : Rendering Password Change Page
  */
 export function renderPasswordChangePage() {
+  const user = getCurrentUser();
   const passwordInput = document.getElementById('password');
+  const toastMessage = document.getElementById('toastMessage');
+  const passwordHelper = document.getElementById('passwordHelper');
   const confirmPasswordInput = document.getElementById('confirmPassword');
   const passwordChangeButton = document.getElementById('passwordChangeButton');
-  const passwordHelper = document.getElementById('passwordHelper');
   const confirmPasswordHelper = document.getElementById('confirmPasswordHelper');
-  const toastMessage = document.getElementById('toastMessage');
 
-  const user = getCurrentUser();
+  // IMP : 비밀번호 변경을 위한 Validation State 설정
   const validationState = {
     password: false,
     confirmPassword: false,
@@ -132,10 +136,9 @@ export function renderPasswordChangePage() {
     updatePasswordChangeButton();
   });
 
-  // * 비밀번호 변경 버튼 클릭 시, Session Storage에 저장된 User 정보 업데이트
+  // IMP : 비밀번호 변경 버튼 클릭 시, Session Storage, DB 정보 업데이트
   passwordChangeButton.addEventListener('click', function () {
     const newPassword = passwordInput.value.trim();
-
     user.password = newPassword;
     setCurrentUser(user);
     updateUser(user);

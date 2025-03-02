@@ -55,18 +55,27 @@
   border: 1px solid #000;
 }
 
-.post-create-form #postEdit {
+.post-create-form #postCreate {
   width: 50%;
   padding: 10px;
   color: white;
   background-color: #aca0eb;
   border: none;
   font: inherit;
-  cursor: pointer;
+  cursor: not-allowed;
   border-radius: 6px;
   align-self: center;
 }
 
-.post-create-form #postEdit:hover {
+.post-create-form #postCreate.active {
+  background-color: #8f77e0;
+  cursor: pointer;
+}
+
+.post-create-form #postCreate:disabled {
+  opacity: 0.5;
+}
+
+.post-create-form #postCreate.active:hover {
   background-color: #8f77e0;
 }

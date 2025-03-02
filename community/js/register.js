@@ -8,14 +8,13 @@ import {
 import { getDB, setDB, registerUser } from './util_database.js';
 
 /**
- * IMP : 회원 가입 처리
+ * IMP : Rendering Register Page
  */
 export async function renderRegister() {
   if (!getDB()) {
     const db = await fetch('/data/db.json').then((res) => res.json());
     setDB(db);
   }
-
   const newUser = {
     nickname: '',
     email: '',
@@ -23,6 +22,7 @@ export async function renderRegister() {
     profileImage: '',
   };
 
+  // IMP : User 정보 수정을 위한 Validation State 설정
   const validationState = {
     email: false,
     password: false,
@@ -44,7 +44,7 @@ export async function renderRegister() {
   setupConfirmPasswordInput(validationState, updateRegisterButtonState);
   setupNicknameInput(validationState, updateRegisterButtonState);
 
-  // TYPE : 회원가입 버튼 클릭 시
+  // IMP : Register 버튼 클릭 시, User 정보 DB 등록 => CallBack : registerUser()
   registerButton.addEventListener('click', async function () {
     newUser.email = document.getElementById('email').value.trim();
     newUser.password = document.getElementById('password').value.trim();

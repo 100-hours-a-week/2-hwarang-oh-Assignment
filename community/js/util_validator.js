@@ -1,5 +1,6 @@
 // IMP : Validation Check
 
+// TYPE : User Validation
 export function validateEmail(input) {
   const value = input.value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,5 +67,17 @@ export function validateNickname(input) {
     return { valid: false, message: '* 닉네임은 최대 10자까지 작성 가능합니다.' };
   }
 
+  return { valid: true, message: '' };
+}
+
+// TYPE : Post Validation
+export function validateTitle(input) {
+  const value = input.value.trim();
+  if (!value) {
+    return { valid: false, message: '* 제목을 입력해주세요.' };
+  }
+  if (value.length >= 27) {
+    return { valid: false, message: '* 제목은 26자 이내로 작성해주세요.' };
+  }
   return { valid: true, message: '' };
 }

@@ -6,7 +6,6 @@ import { validateEmail, validatePassword } from './util_validator.js';
  * @param {*} email
  * @param {*} password
  */
-
 export function renderLoginPage() {
   // TYPE 1: 로그인 Form Submit Event
   const loginForm = document.querySelector('.login-form');

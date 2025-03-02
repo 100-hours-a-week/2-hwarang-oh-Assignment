@@ -4,6 +4,7 @@ import {
   getComments,
   getPost,
   getUsers,
+  deletePost,
   createComment,
   updateComment,
   deleteComment,
@@ -24,13 +25,18 @@ export async function renderPostDetail() {
     author: users.find((user) => user.id === comment.authorId),
   }));
 
+  // TYPE : Post Detail Page Rendering
   renderPostContents(author, post);
+
+  // TYPE : Post Related Button Rendering
   renderPostButton(currentUser, post);
+
+  // TYPE : Comment List Rendering
   renderComments(currentUser, comments);
 }
 
 /**
- * IMP : render Post Contents
+ * IMP : Post Detail Page Rendering
  * @param {*} author
  * @param {*} post
  */
@@ -58,7 +64,7 @@ function renderPostContents(author, post) {
 }
 
 /**
- * IMP : render Post Button
+ * IMP : Post Related Button Rendering
  * @param {*} currentUser
  * @param {*} post
  */
@@ -66,6 +72,7 @@ function renderPostButton(currentUser, post) {
   const editPostBtn = document.getElementById('editPost');
   const deletePostBtn = document.getElementById('deletePost');
 
+  // ? : 현재 사용자가 게시글 작성자인 경우, 수정, 삭제 버튼 활성화
   if (currentUser && currentUser.id === post.authorId) {
     editPostBtn.style.display = 'block';
     deletePostBtn.style.display = 'block';
@@ -78,6 +85,7 @@ function renderPostButton(currentUser, post) {
         type: 'post',
         id: post.id,
         onDelete: () => {
+          deletePost(post.id);
           window.location.href = '/posts';
         },
       });
@@ -110,38 +118,31 @@ function renderComments(currentUser, comments) {
     const commentButtons = clone.querySelector('.comment-buttons');
     const contentElement = clone.querySelector('.comment-content');
 
-    // Template Slot에 데이터를 삽입한다.
+    // IMP : Template Slot에 데이터를 삽입한다.
     contentElement.textContent = comment.content;
     clone.querySelector("slot[name='date']").textContent = comment.date;
     clone.querySelector('.comment-profile').src = comment.author.profileImage;
     clone.querySelector("slot[name='author']").textContent = comment.author.nickname;
 
+    // IMP : 댓글 작성자가, 현재 사용자인 경우, 수정, 삭제 버튼 활성화
     const editForm = clone.querySelector('.comment-edit-form');
     const editInput = clone.querySelector('.edit-comment-input');
     const editCancelButton = clone.querySelector('.edit-comment-cancel');
     const editSaveButton = clone.querySelector('.edit-comment-submit');
     editForm.style.display = 'none';
 
-    // 각 버튼에 고유 ID 부여 (commentId를 활용)
+    // IMP : 댓글 작성자 구분을 위해, 각 버튼에 고유 ID 부여 (commentId를 활용)
     editButton.id = `edit-comment-${comment.id}`;
     deleteButton.id = `delete-comment-${comment.id}`;
     if (currentUser && currentUser.id === comment.authorId) {
       commentButtons.style.display = 'flex';
 
+      // TYPE : 수정 Button -> 클릭 시, 수정 Form 활성화
       editButton.addEventListener('click', function () {
         enterEditMode(contentElement, editForm, editInput, comment);
       });
 
-      editCancelButton.addEventListener('click', function () {
-        contentElement.style.display = 'block';
-        editForm.style.display = 'none';
-      });
-
-      editSaveButton.addEventListener('click', function () {
-        saveCommentEdit(contentElement, editForm, editInput, comment);
-      });
-
-      // TODO : 삭제 버튼 이벤트 리스너
+      // TYPE : 삭제 Button -> 클릭 시, Modal 띄우기 => CallBack : deleteComment()
       deleteButton.addEventListener('click', function () {
         showDeleteConfirmModal({
           type: 'comment',
@@ -151,6 +152,17 @@ function renderComments(currentUser, comments) {
             window.location.reload();
           },
         });
+      });
+
+      // TYPE : 수정 Form -> Cancel Button -> 클릭 시, Form 비활성화
+      editCancelButton.addEventListener('click', function () {
+        contentElement.style.display = 'block';
+        editForm.style.display = 'none';
+      });
+
+      // TYPE : 수정 Form -> Save Button -> 클릭 시, 수정 & Form 비활성화
+      editSaveButton.addEventListener('click', function () {
+        saveCommentEdit(contentElement, editForm, editInput, comment);
       });
     } else {
       commentButtons.style.display = 'none';

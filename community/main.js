@@ -1,7 +1,8 @@
 // IMP : Post 기능 관련 Import
 import { renderPosts } from './js/posts.js';
-import { renderPostDetail } from './js/post-detail.js';
 import { renderEditPost } from './js/post-edit.js';
+import { renderPostCreate } from './js/post-create.js';
+import { renderPostDetail } from './js/post-detail.js';
 
 // IMP : User 기능 관련 Import
 import { renderLoginPage } from './js/login.js';
@@ -11,13 +12,25 @@ import { renderUserEditPage, renderPasswordChangePage } from './js/user-edit.js'
 // IMP : Header 기능 Import
 import { updateHeader } from './js/header.js';
 
+// IMP : Current User에 대한 Session 관리 느낌
+const USER_STORAGE_KEY = 'currentUser';
+export function getCurrentUser() {
+  return JSON.parse(sessionStorage.getItem(USER_STORAGE_KEY));
+}
+export function setCurrentUser(user) {
+  sessionStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+}
+export function removeCurrentUser() {
+  sessionStorage.removeItem(USER_STORAGE_KEY);
+}
+
 // IMP : Routing
 const routes = {
   '/': { path: 'components/user/login.html', render: () => renderLoginPage() },
   '/posts': { path: '/components/posts/posts.html', render: renderPosts },
   '/posts/:id': { path: '/components/posts/post-detail.html', render: renderPostDetail },
   '/posts/:id/edit': { path: '/components/posts/post-edit.html', render: renderEditPost },
-  '/posts/create': { path: '/components/posts/post-create.html' },
+  '/posts/create': { path: '/components/posts/post-create.html', render: renderPostCreate },
   '/user/edit': { path: '/components/user/user-edit.html', render: renderUserEditPage },
   '/user/change-password': {
     path: '/components/user/change-password.html',
@@ -25,20 +38,6 @@ const routes = {
   },
   '/register': { path: '/components/user/register.html', render: renderRegister },
 };
-
-// IMP : Get/Set/Remove Current User
-const USER_STORAGE_KEY = 'currentUser';
-export function getCurrentUser() {
-  return JSON.parse(sessionStorage.getItem(USER_STORAGE_KEY));
-}
-
-export function setCurrentUser(user) {
-  sessionStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
-}
-
-export function removeCurrentUser() {
-  sessionStorage.removeItem(USER_STORAGE_KEY);
-}
 
 // IMP : Route 된 Page Loading
 document.addEventListener('DOMContentLoaded', async () => {

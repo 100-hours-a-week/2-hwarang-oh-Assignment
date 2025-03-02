@@ -13,7 +13,7 @@ export async function renderPosts() {
     window.location.href = '/posts/create';
   });
 
-  // * Post Template의 Slot에 데이터를 삽입한다.
+  // IMP : Post Template의 Slot에 데이터를 삽입한다.
   posts.forEach((post) => {
     const clone = document.importNode(template.content, true);
     const author = users.find((user) => user.id === post.authorId);

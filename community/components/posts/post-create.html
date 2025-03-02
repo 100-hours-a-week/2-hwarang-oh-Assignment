@@ -9,6 +9,7 @@
       id="postTitle"
       placeholder="제목을 입력하세요 (최대 26글자)"
       class="post-title" />
+    <small id="postTitleHelper" class="helper-text"></small>
 
     <label for="postContent">내용*</label>
     <textarea id="postContent" placeholder="내용을 입력하세요" class="post-content"></textarea>
@@ -19,9 +20,9 @@
         <input type="file" id="postImage" hidden />
         <span class="file-choose">파일 선택</span>
       </label>
-      <span id="fileLabel">기존 파일 명</span>
+      <span id="fileLabel">파일을 선택해주세요</span>
     </div>
 
-    <button id="postEdit">완료</button>
+    <button type="button" id="postCreate">완료</button>
   </form>
 </div>
