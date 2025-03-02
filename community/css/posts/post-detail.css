@@ -133,7 +133,7 @@
   border: none;
   cursor: pointer;
   align-self: flex-end;
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 .comment-section .new-comment-button:hover {
@@ -212,4 +212,42 @@
   font-size: 15px;
   font-weight: 400;
   padding-left: 50px;
+}
+
+.comment .comment-edit-form {
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment .comment-edit-form .edit-comment-input {
+  border: none;
+  resize: none;
+  outline: none;
+  height: 80px;
+  overflow: auto;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment .comment-edit-form .edit-comment-buttons {
+  gap: 10px;
+  display: flex;
+  align-self: flex-end;
+}
+
+.comment .comment-edit-form .edit-comment-buttons button {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: 20px;
+  background-color: #aca0eb;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: 'Pretendard', sans-serif;
 }

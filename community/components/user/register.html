@@ -9,29 +9,42 @@
         <img id="previewImage" src="/image/placeholder.webp" alt="Profile" />
       </label>
       <input type="file" id="registerProfile" accept="image/*" hidden />
+      <small id="registerProfileHelper" class="helper-text">* 프로필 사진을 추가해주세요</small>
     </div>
 
-    <label for="email">이메일*</label>
-    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
+    <div class="each-input">
+      <label for="email">이메일*</label>
+      <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
+      <small id="emailHelper" class="helper-text"></small>
+    </div>
 
-    <label for="password">비밀번호*</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      placeholder="비밀번호를 입력하세요"
-      required />
+    <div class="each-input">
+      <label for="password">비밀번호*</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="비밀번호를 입력하세요"
+        required />
+      <small id="passwordHelper" class="helper-text"></small>
+    </div>
 
-    <label for="confirmPassword">비밀번호 확인*</label>
-    <input
-      type="password"
-      id="confirmPassword"
-      name="confirmPassword"
-      placeholder="비밀번호를 다시 입력하세요"
-      required />
+    <div class="each-input">
+      <label for="confirmPassword">비밀번호 확인*</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        placeholder="비밀번호를 다시 입력하세요"
+        required />
+      <small id="confirmPasswordHelper" class="helper-text"></small>
+    </div>
 
-    <label for="nickname">닉네임*</label>
-    <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required />
+    <div class="each-input">
+      <label for="nickname">닉네임*</label>
+      <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required />
+      <small id="nicknameHelper" class="helper-text"></small>
+    </div>
 
     <button type="button" id="registerButton" class="register-button" disabled>회원가입</button>
   </form>
