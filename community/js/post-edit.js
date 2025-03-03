@@ -30,6 +30,8 @@ export function renderEditPost() {
   });
 
   postEditButton.addEventListener('click', async function () {
+    post.title = postTitle.value.trim();
+    post.content = postContent.value.trim();
     let updatePostResponse = updatePost(postId, post);
     if (!updatePostResponse.success) {
       alert('게시글 수정에 실패했습니다.');

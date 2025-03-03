@@ -7,3 +7,5 @@
 ### 🔹 [2주차 과제 README](/automessage/README_2주차.md)
 
 ### 🔹 [3주차 과제 README](/community/README_3주차.md)
+
+### 🔹 [4주차 과제 README](/community/README_4주차.md)

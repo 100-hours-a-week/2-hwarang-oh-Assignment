@@ -17,7 +17,6 @@ export async function renderPostDetail() {
   const postId = window.location.pathname.split('/')[2];
   const users = getUsers();
   const post = await getPost(postId);
-  console.log(post);
   const currentUser = getCurrentUser();
   const author = users.find((user) => user.id === post.authorId);
   const comments = getComments(postId).map((comment) => ({
