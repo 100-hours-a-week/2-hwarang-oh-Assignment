@@ -21,6 +21,11 @@
 
 # evn file
 .env
+.properties
+
+# yml, yaml file
+*.yml
+*.yaml
 
 # node_modules
 node_modules/
@@ -28,8 +33,6 @@ node_modules/
 # video files
 *.mp4
 
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-

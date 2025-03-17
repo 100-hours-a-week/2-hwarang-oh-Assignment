@@ -1,0 +1,41 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CommunityApplication",
+      "request": "launch",
+      "mainClass": "com.ktb.community.CommunityApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BackendApplication<backend>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ktb.community.backend.BackendApplication",
+      "projectName": "backend",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BackendApplication<backend_>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ktb.community.backend.BackendApplication",
+      "projectName": "backend_",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-CommunityApplication<backend>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ktb.community.CommunityApplication",
+      "projectName": "backend",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
