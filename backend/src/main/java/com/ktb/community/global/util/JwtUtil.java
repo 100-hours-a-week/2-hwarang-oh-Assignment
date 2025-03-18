@@ -16,9 +16,10 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "ThisIsSecretKeyForJWTGeneration";
+    private static final String SECRET_KEY = "ThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGeneration";
     private static final long ACCESS_EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
-    private static final long REFRESH_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7; // 7 days
+    private static final long REFRESH_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7;
+    // 7 days
     private final SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
     public String generateToken(User user) {
@@ -36,7 +37,8 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
+                .setExpiration(new Date(System.currentTimeMillis() +
+                        REFRESH_EXPIRATION_TIME))
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }
