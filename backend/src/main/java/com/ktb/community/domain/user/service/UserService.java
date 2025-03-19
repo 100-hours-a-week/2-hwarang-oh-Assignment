@@ -3,9 +3,16 @@ package com.ktb.community.domain.user.service;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
+import com.ktb.community.domain.user.model.dto.UserUpdatePasswordRequest;
+import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
 import com.ktb.community.domain.user.model.entity.User;
 import com.ktb.community.domain.user.repository.UserRepository;
+
 import com.ktb.community.global.util.PasswordUtil;
+import com.ktb.community.global.exception.ErrorCode;
+import com.ktb.community.global.exception.BaseException;
 
 @Service
 public class UserService {
@@ -16,42 +23,47 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // IMP : Register User -> createUser
-    public void registerUser(User user) {
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new IllegalStateException("이미 가입된 이메일입니다. 🚨");
+    // IMP : Register User -> save
+    public void registerUser(UserRegisterRequest request) {
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new BaseException(ErrorCode.DUPLICATED_EMAIL);
         }
-        user.setPassword(PasswordUtil.encode(user.getPassword()));
-        userRepository.createUser(user);
+        request.setPassword(PasswordUtil.encode(request.getPassword()));
+        userRepository.save(request);
     }
 
-    // IMP : Get User By Id -> cindUserById
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    // IMP : Get User By Id -> findById
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new BaseException(ErrorCode.NOT_EXIST_USER));
     }
 
-    // IMP : Revise User -> updateUser
-    public void reviseUser(Long id, String nickname, String profileImageUrl) {
+    // IMP : Revise User -> update
+    public void reviseUser(Long id, UserUpdateRequest request) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty())
-            throw new IllegalStateException("존재하지 않는 사용자입니다. 🚨");
+            throw new BaseException(ErrorCode.NOT_EXIST_USER);
 
-        User user = optionalUser.get();
-        user.setNickname(nickname);
-        user.setProfileImageUrl(profileImageUrl);
-        userRepository.updateUser(user);
+        userRepository.update(id, request);
     }
 
-    // IMP : Change Password -> updateUserPassword
-    public void changeUserPassword(Long id, String oldPassword, String newPassword) {
+    // IMP : Change Password -> updatePassword
+    public void changeUserPassword(Long id, UserUpdatePasswordRequest request) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty())
-            throw new IllegalStateException("존재하지 않는 사용자입니다. 🚨");
+            throw new BaseException(ErrorCode.NOT_EXIST_USER);
 
         User user = optionalUser.get();
-        if (!PasswordUtil.match(oldPassword, user.getPassword()))
-            throw new IllegalStateException("비밀번호가 일치하지 않습니다. 🚨");
+        if (!PasswordUtil.match(request.getOldPassword(), user.getPassword()))
+            throw new BaseException(ErrorCode.INVALID_PASSWORD);
 
-        userRepository.updateUserPassword(id, PasswordUtil.encode(newPassword));
+        userRepository.updatePassword(id, PasswordUtil.encode(request.getNewPassword()));
+    }
+
+    // IMP : Delete User -> delete
+    public void deleteUser(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty())
+            throw new BaseException(ErrorCode.NOT_EXIST_USER);
+        userRepository.delete(id);
     }
 }
