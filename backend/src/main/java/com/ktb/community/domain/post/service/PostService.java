@@ -4,15 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ktb.community.domain.likes.model.LikeStatus;
+import com.ktb.community.domain.likes.repository.LikeRepository;
 import com.ktb.community.domain.post.model.entity.Post;
 import com.ktb.community.domain.post.repository.PostRepository;
 
 @Service
 public class PostService {
-
     private final PostRepository postRepository;
+    private final LikeRepository likeRepostiory;
 
-    private PostService(PostRepository postRepository) {
+    private PostService(PostRepository postRepository, LikeRepository likeRepostiory) {
+        this.likeRepostiory = likeRepostiory;
         this.postRepository = postRepository;
     }
 
@@ -26,6 +29,7 @@ public class PostService {
     }
 
     public Post getPostById(Long id) {
+        postRepository.updateViewCount(id);
         return postRepository.findById(id);
     }
 
@@ -35,6 +39,19 @@ public class PostService {
 
     public void removePost(Long id) {
         postRepository.deletePost(id);
+    }
+
+    public LikeStatus toggleLike(Long postId, Long userId) {
+        boolean exists = likeRepostiory.findByPostIdandUserId(postId, userId);
+        if (exists) {
+            likeRepostiory.removeLike(userId, postId);
+            postRepository.decreaseLikeCount(postId);
+            return LikeStatus.UNLIKED;
+        } else {
+            likeRepostiory.addLike(userId, postId);
+            postRepository.increaseLikeCount(postId);
+            return LikeStatus.LIKED;
+        }
     }
 
 }

@@ -23,6 +23,9 @@ public class PostRepository {
         post.setUserId(rs.getLong("user_id"));
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
+        post.setViewsCount(rs.getInt("views_count"));
+        post.setLikesCount(rs.getInt("likes_count"));
+        post.setCommentsCount(rs.getInt("comments_count"));
         post.setPostImageUrl(rs.getString("post_image_url"));
         post.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
         post.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
@@ -52,8 +55,23 @@ public class PostRepository {
         jdbcTemplate.update(query, title, content, postImageUrl, id);
     }
 
+    public void updateViewCount(Long id) {
+        String query = "UPDATE posts SET views_count = views_count + 1 WHERE id = ?";
+        jdbcTemplate.update(query, id);
+    }
+
     public void deletePost(Long id) {
         String query = "UPDATE posts SET deleted_at = NOW() WHERE id = ?";
+        jdbcTemplate.update(query, id);
+    }
+
+    public void increaseLikeCount(Long id) {
+        String query = "UPDATE posts SET likes_count = likes_count + 1 WHERE id = ?";
+        jdbcTemplate.update(query, id);
+    }
+
+    public void decreaseLikeCount(Long id) {
+        String query = "UPDATE posts SET likes_count = likes_count - 1 WHERE id = ?";
         jdbcTemplate.update(query, id);
     }
 

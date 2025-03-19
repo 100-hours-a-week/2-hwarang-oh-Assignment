@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktb.community.domain.likes.model.LikeStatus;
 import com.ktb.community.domain.post.model.dto.PostCreateRequest;
 import com.ktb.community.domain.post.model.dto.PostUpdateRequest;
 import com.ktb.community.domain.post.model.entity.Post;
 import com.ktb.community.domain.post.service.PostService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -68,5 +70,14 @@ public class PostController {
     public ResponseEntity<String> removePost(@PathVariable("id") Long id) {
         postService.removePost(id);
         return ResponseEntity.ok("Post removed successfully");
+    }
+
+    @GetMapping("/{id}/like")
+    public ResponseEntity<String> likePost(@PathVariable("id") Long id, @RequestParam Long userId) {
+        LikeStatus likeStatus = postService.toggleLike(id, userId);
+        if (likeStatus == LikeStatus.UNLIKED)
+            return ResponseEntity.ok("Post unliked successfully");
+        else
+            return ResponseEntity.ok("Post liked successfully");
     }
 }
