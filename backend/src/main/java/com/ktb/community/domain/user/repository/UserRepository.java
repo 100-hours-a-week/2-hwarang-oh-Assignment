@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
-import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
 import com.ktb.community.domain.user.model.entity.User;
+import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
+import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
 
 /**
  * IMP : User Repository

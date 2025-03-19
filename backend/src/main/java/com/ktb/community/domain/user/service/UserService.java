@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
-import com.ktb.community.domain.user.model.dto.UserUpdatePasswordRequest;
-import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
 import com.ktb.community.domain.user.model.entity.User;
 import com.ktb.community.domain.user.repository.UserRepository;
+import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
+import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
+import com.ktb.community.domain.user.model.dto.UserUpdatePasswordRequest;
 
 import com.ktb.community.global.util.PasswordUtil;
 import com.ktb.community.global.exception.ErrorCode;

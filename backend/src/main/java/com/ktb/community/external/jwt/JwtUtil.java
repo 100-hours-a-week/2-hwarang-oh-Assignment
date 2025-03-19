@@ -1,4 +1,4 @@
-package com.ktb.community.global.util;
+package com.ktb.community.external.jwt;
 
 import java.util.Date;
 

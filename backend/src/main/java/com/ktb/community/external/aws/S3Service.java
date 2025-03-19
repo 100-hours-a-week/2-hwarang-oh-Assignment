@@ -1,4 +1,4 @@
-package com.ktb.community.global.service;
+package com.ktb.community.external.aws;
 
 import org.springframework.stereotype.Service;
 

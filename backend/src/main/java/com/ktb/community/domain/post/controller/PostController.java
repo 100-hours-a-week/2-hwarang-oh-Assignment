@@ -2,23 +2,28 @@ package com.ktb.community.domain.post.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktb.community.domain.likes.model.LikeStatus;
-import com.ktb.community.domain.post.model.dto.PostCreateRequest;
-import com.ktb.community.domain.post.model.dto.PostUpdateRequest;
 import com.ktb.community.domain.post.model.entity.Post;
 import com.ktb.community.domain.post.service.PostService;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.ktb.community.domain.post.model.dto.PostCreateRequest;
+import com.ktb.community.domain.post.model.dto.PostUpdateRequest;
 
+/**
+ * IMP : PostController ( REST API )
+ * TYPE : EndPoint : /api/posts
+ */
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -30,54 +35,47 @@ public class PostController {
     }
 
     // IMP : Create Post -> createPost Service
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<String> createPost(@RequestBody PostCreateRequest postCreateRequest) {
-        Post post = new Post();
-        post.setTitle(postCreateRequest.getTitle());
-        post.setContent(postCreateRequest.getContent());
-        post.setPostImageUrl(postCreateRequest.getPostImageUrl());
-        postService.createPost(postCreateRequest.getUserId(), post);
-        return ResponseEntity.ok("Post created successfully");
+        postService.createPost(postCreateRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body("게시물 작성을 성공적으로 완료 ✅");
     }
 
     // IMP : Get Posts -> getPosts Service
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Post>> getPosts() {
-        return ResponseEntity.ok(postService.getPosts());
+        return ResponseEntity.status(HttpStatus.OK).body(postService.getPosts());
     }
 
     // IMP : Get Post By Id -> getPostById Service
-    @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(postService.getPostById(id));
+    @GetMapping("/{postId}")
+    public ResponseEntity<Post> getPostById(@PathVariable("postId") Long postId) {
+        return ResponseEntity.status(HttpStatus.OK).body(postService.getPostById(postId));
     }
 
     // IMP : Revise Post -> revisePost Service
-    @PutMapping("/{id}")
-    public ResponseEntity<String> revisePost(@PathVariable("id") Long id,
+    @PutMapping("/{postId}")
+    public ResponseEntity<String> revisePost(@PathVariable("postId") Long postId,
             @RequestBody PostUpdateRequest postUpdateRequest) {
-        Post post = new Post();
-        post.setTitle(postUpdateRequest.getTitle());
-        post.setContent(postUpdateRequest.getContent());
-        post.setPostImageUrl(postUpdateRequest.getPostImageUrl());
-        postService.revisePost(id, post.getTitle(), post.getContent(), post.getPostImageUrl());
-        return ResponseEntity.ok("Post revised successfully");
 
+        postService.revisePost(postId, postUpdateRequest);
+        return ResponseEntity.status(HttpStatus.OK).body("게시물 수정을 성공적으로 완료 ✅");
     }
 
-    // IMP : Remove Post -> removePost Service
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> removePost(@PathVariable("id") Long id) {
-        postService.removePost(id);
-        return ResponseEntity.ok("Post removed successfully");
+    // IMP : Remove Post -> deletePost Service
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable("postId") Long postId) {
+        postService.deletePost(postId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("게시물 삭제를 성공적으로 완료 ✅");
     }
 
-    @GetMapping("/{id}/like")
-    public ResponseEntity<String> likePost(@PathVariable("id") Long id, @RequestParam Long userId) {
-        LikeStatus likeStatus = postService.toggleLike(id, userId);
+    // IMP : Like Post -> toggleLike Service
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<String> likePost(@PathVariable("postId") Long postId, @RequestParam("userId") Long userId) {
+        LikeStatus likeStatus = postService.toggleLike(postId, userId);
         if (likeStatus == LikeStatus.UNLIKED)
-            return ResponseEntity.ok("Post unliked successfully");
+            return ResponseEntity.ok("게시물 좋아요 취소 👎");
         else
-            return ResponseEntity.ok("Post liked successfully");
+            return ResponseEntity.ok("게시물 좋아요 👍");
     }
 }

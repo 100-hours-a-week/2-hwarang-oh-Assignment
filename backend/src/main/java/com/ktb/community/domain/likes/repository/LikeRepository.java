@@ -1,10 +1,12 @@
 package com.ktb.community.domain.likes.repository;
 
-import java.util.Optional;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+/**
+ * IMP : Like Repository
+ * TYPE : CRUD 순서로 DB 접근 로직을 구현하였다.
+ */
 @Repository
 public class LikeRepository {
 
@@ -14,18 +16,21 @@ public class LikeRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addLike(Long userId, Long postId) {
-        String sql = "INSERT INTO likes (user_id, post_id, created_at) VALUES (?, ?, NOW())";
-        jdbcTemplate.update(sql, userId, postId);
+    // TYPE : Create => Insert Like
+    public void addLike(Long postId, Long userId) {
+        String sql = "INSERT INTO likes (post_id, user_id, created_at) VALUES (?, ?, NOW())";
+        jdbcTemplate.update(sql, postId, userId);
     }
 
-    public boolean findByPostIdandUserId(Long userId, Long postId) {
-        String sql = "SELECT EXISTS (SELECT * FROM likes WHERE user_id = ? AND post_id = ?)";
-        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, Boolean.class, userId, postId)).orElse(false);
+    // TYPE : Retrieve => Select Like by User Id and Post Id
+    public boolean existsByPostIdandUserId(Long postId, Long userId) {
+        String sql = "SELECT EXISTS (SELECT 1 FROM likes WHERE post_id = ? AND user_id = ?)";
+        return jdbcTemplate.queryForObject(sql, Boolean.class, postId, userId);
     }
 
-    public void removeLike(Long userId, Long postId) {
-        String sql = "DELETE FROM likes WHERE user_id = ? AND post_id = ?";
-        jdbcTemplate.update(sql, userId, postId);
+    // TYPE : Delete => Delete Like
+    public void removeLike(Long postId, Long userId) {
+        String sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
+        jdbcTemplate.update(sql, postId, userId);
     }
 }
