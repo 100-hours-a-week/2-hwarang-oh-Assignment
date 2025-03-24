@@ -2,22 +2,56 @@ package com.ktb.community.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
 
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+/**
+ * IMP : Security Configuration
+ * * CSRF Protection Disable -> Token 기반 인증 사용하기에 CSRF Protection 비활성화
+ * * CORS -> 기본 설정으로 활성화, 추가 설정은 필요에 따라 설정
+ * * Session Management -> Session을 생성하지 않는 Stateless로 설정
+ * * Request Authorization -> /api/users ( 회원 가입 ), /auth/login, /auth/refresh
+ * 요청은 인증 없이 허용
+ * * Form Login, HTTP Basic -> 비활성화
+ * * Custom Filter -> JWTAuthenticationFilter을
+ * * UsernamePasswordAuthenticationFilter 이전에 동작하도록 지정함.
+ */
+
+// TODO : JWT Token을 검증하는 Custom Filter 추가
+// TODO : AUTH 로직이 완료되면 anyRequest().authenticated()로 변경
 @Configuration
 public class SecurityConfig {
+
+    // TYPE : JWT Token을 검증하는 Custom Filter
+    private final JWTAuthenticationFilter jwtAuthenticationFilter;
+    private final CorsConfigurationSource corsConfigurationSource;
+
+    public SecurityConfig(JWTAuthenticationFilter jwtAuthenticationFilter,
+            CorsConfigurationSource corsConfigurationSource) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.corsConfigurationSource = corsConfigurationSource;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // CSRF 보호 비활성화 (API 사용 시 필요)
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // 🔥 모든 요청 인증 없이 허용
+                .csrf(csrf -> csrf.disable()) // IMP : CSRF Protection Disable -> Token 기반 인증 사용
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(requesetConfigurer -> requesetConfigurer
+                        .requestMatchers("/api/users", "auth/login", "auth/refresh").permitAll()
+                        .anyRequest().permitAll()
+                // .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.disable()) // 기본 로그인 폼 비활성화
-                .httpBasic(basic -> basic.disable()); // 기본 HTTP Basic 인증 비활성화
-
+                .formLogin(login -> login.disable())
+                .httpBasic(basic -> basic.disable())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
