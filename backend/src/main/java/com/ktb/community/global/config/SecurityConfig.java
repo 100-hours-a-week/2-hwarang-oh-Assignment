@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import org.springframework.web.cors.CorsConfigurationSource;
 
+import com.ktb.community.global.filter.JWTAuthenticationFilter;
+
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,36 +24,35 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * * UsernamePasswordAuthenticationFilter 이전에 동작하도록 지정함.
  */
 
-// TODO : JWT Token을 검증하는 Custom Filter 추가
 // TODO : AUTH 로직이 완료되면 anyRequest().authenticated()로 변경
 @Configuration
 public class SecurityConfig {
 
-    // TYPE : JWT Token을 검증하는 Custom Filter
-    private final JWTAuthenticationFilter jwtAuthenticationFilter;
-    private final CorsConfigurationSource corsConfigurationSource;
+        // TYPE : JWT Token을 검증하는 Custom Filter
+        private final JWTAuthenticationFilter jwtAuthenticationFilter;
+        private final CorsConfigurationSource corsConfigurationSource;
 
-    public SecurityConfig(JWTAuthenticationFilter jwtAuthenticationFilter,
-            CorsConfigurationSource corsConfigurationSource) {
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.corsConfigurationSource = corsConfigurationSource;
-    }
+        public SecurityConfig(JWTAuthenticationFilter jwtAuthenticationFilter,
+                        CorsConfigurationSource corsConfigurationSource) {
+                this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+                this.corsConfigurationSource = corsConfigurationSource;
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // IMP : CSRF Protection Disable -> Token 기반 인증 사용
-                .cors(cors -> cors.configurationSource(corsConfigurationSource))
-                .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(requesetConfigurer -> requesetConfigurer
-                        .requestMatchers("/api/users", "auth/login", "auth/refresh").permitAll()
-                        .anyRequest().permitAll()
-                // .anyRequest().authenticated()
-                )
-                .formLogin(login -> login.disable())
-                .httpBasic(basic -> basic.disable())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .csrf(csrf -> csrf.disable()) // IMP : CSRF Protection Disable -> Token 기반 인증 사용
+                                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                                .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeHttpRequests(requesetConfigurer -> requesetConfigurer
+                                                .requestMatchers("/api/users", "/auth/login", "/auth/refresh")
+                                                .permitAll()
+                                                // .anyRequest().permitAll()
+                                                .anyRequest().authenticated())
+                                .formLogin(login -> login.disable())
+                                .httpBasic(basic -> basic.disable())
+                                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                return http.build();
+        }
 }

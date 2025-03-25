@@ -17,7 +17,10 @@ public class ErrorMessage {
      * ? Client가 요청한 자원에 대해 유효한 자격 증명이 없음
      */
     public static final String UNAUTHORIZED_MESSAGE = "인증되지 않은 사용자입니다. 🚨";
+    public static final String INVALID_USER_MESSAGE = "아이디 혹은 비밀번호가 일치하지 않습니다. 🚨";
     public static final String INVALID_PASSWORD_MESSAGE = "비밀번호가 일치하지 않습니다. 🚨";
+    public static final String EXPIRED_ACCESS_TOKEN_MESSAGE = "Access Token이 만료되었습니다. 🚨";
+    public static final String EXPIRED_REFRESH_TOKEN_MESSAGE = "Refresh Token이 만료되었습니다. 🚨";
 
     /**
      * TYPE : [403 FORBIDDEN]

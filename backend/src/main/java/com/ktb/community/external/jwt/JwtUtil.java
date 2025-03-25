@@ -1,35 +1,34 @@
 package com.ktb.community.external.jwt;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
-
-import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Component;
 
 import com.ktb.community.domain.user.model.entity.User;
+import com.ktb.community.external.jwt.config.JwtProperties;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "ThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGenerationThisIsSecretKeyForJWTGeneration";
-    private static final long ACCESS_EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
-    private static final long REFRESH_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7;
-    // 7 days
-    private final SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    private final JwtProperties jwtProperties;
 
-    public String generateToken(User user) {
+    public JwtUtil(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
+
+    public String generateAccessToken(User user) {
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
                 .claim("nickname", user.getNickname())
                 .claim("email", user.getEmail())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + ACCESS_EXPIRATION_TIME))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.expiration().access()))
+                .signWith(Keys.hmacShaKeyFor(jwtProperties.secret().getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }
 
@@ -37,9 +36,8 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() +
-                        REFRESH_EXPIRATION_TIME))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.expiration().refresh()))
+                .signWith(Keys.hmacShaKeyFor(jwtProperties.secret().getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }
 
@@ -47,7 +45,7 @@ public class JwtUtil {
         try {
             return Long.parseLong(
                     Jwts.parserBuilder()
-                            .setSigningKey(secretKey)
+                            .setSigningKey(jwtProperties.secret().getBytes(StandardCharsets.UTF_8))
                             .build()
                             .parseClaimsJws(token)
                             .getBody()
@@ -57,4 +55,11 @@ public class JwtUtil {
         }
     }
 
+    public int getAccessTokenExpiration() {
+        return (int) jwtProperties.expiration().access();
+    }
+
+    public Long getRefreshTokenExpiration() {
+        return jwtProperties.expiration().refresh();
+    }
 }
