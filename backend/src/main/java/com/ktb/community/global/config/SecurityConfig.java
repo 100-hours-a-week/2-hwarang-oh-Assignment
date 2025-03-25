@@ -18,7 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * * CORS -> 기본 설정으로 활성화, 추가 설정은 필요에 따라 설정
  * * Session Management -> Session을 생성하지 않는 Stateless로 설정
  * * Request Authorization -> /api/users ( 회원 가입 ), /auth/login, /auth/refresh
- * 요청은 인증 없이 허용
  * * Form Login, HTTP Basic -> 비활성화
  * * Custom Filter -> JWTAuthenticationFilter을
  * * UsernamePasswordAuthenticationFilter 이전에 동작하도록 지정함.
@@ -48,8 +47,8 @@ public class SecurityConfig {
                                 .authorizeHttpRequests(requesetConfigurer -> requesetConfigurer
                                                 .requestMatchers("/api/users", "/auth/login", "/auth/refresh")
                                                 .permitAll()
-                                                // .anyRequest().permitAll()
                                                 .anyRequest().authenticated())
+                                // .anyRequest().permitAll() -> Test
                                 .formLogin(login -> login.disable())
                                 .httpBasic(basic -> basic.disable())
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

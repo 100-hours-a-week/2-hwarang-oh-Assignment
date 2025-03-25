@@ -2,6 +2,7 @@ package com.ktb.community.domain.user.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,14 +42,15 @@ public class UserController {
     // IMP : Get User By Id -> getUserById Service
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<UserResponse> getUserById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(new UserResponse(userService.getUserById(id)));
+        UserResponse userResponse = new UserResponse(userService.getUserById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(userResponse);
     }
 
     // IMP : Revise User -> reviseUser Service
     @PutMapping("/{id}")
     public ResponseEntity<String> reviseUser(@PathVariable("id") Long id, @RequestBody UserUpdateRequest request) {
         userService.reviseUser(id, request);
-        return ResponseEntity.ok("회원 정보 수정을 성공적으로 완료 ✅");
+        return ResponseEntity.status(HttpStatus.OK).body("회원 정보 수정을 성공적으로 완료 ✅");
     }
 
     // IMP : Change User Password -> changeUserPassword Service
@@ -56,14 +58,14 @@ public class UserController {
     public ResponseEntity<String> changeUserPassword(@PathVariable("id") Long id,
             @RequestBody UserUpdatePasswordRequest request) {
         userService.changeUserPassword(id, request);
-        return ResponseEntity.ok("비밀번호 변경을 성공적으로 완료 ✅");
+        return ResponseEntity.status(HttpStatus.OK).body("비밀번호 변경을 성공적으로 완료 ✅");
     }
 
     // IMP : Delete User -> deleteUser Service
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
-        return ResponseEntity.ok("회원 탈퇴를 성공적으로 완료 ✅");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("회원 탈퇴를 성공적으로 완료 ✅");
     }
 
 }
