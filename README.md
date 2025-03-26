@@ -9,3 +9,7 @@
 ### 🔹 [3주차 과제 README](/community/README_3주차.md)
 
 ### 🔹 [4주차 과제 README](/community/README_4주차.md)
+
+### 🔹 [5주차 과제 README](/backend/README_5주차.md)
+
+### 🔹 [6주차 과제 README](/backend/README_6주차.md)

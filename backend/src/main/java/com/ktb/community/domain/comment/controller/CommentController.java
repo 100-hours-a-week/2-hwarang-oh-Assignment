@@ -31,7 +31,7 @@ public class CommentController {
     }
 
     // IMP : Create Comment -> createComment Service
-    @PostMapping("{postId}")
+    @PostMapping("/{postId}")
     public ResponseEntity<String> createComment(@PathVariable("postId") Long postId,
             @RequestBody CommentRequest request) {
         commentService.createComment(postId, request);
@@ -45,7 +45,7 @@ public class CommentController {
     }
 
     // IMP : Update Comment -> updateComment Service
-    @PutMapping("{commentId}")
+    @PutMapping("/{commentId}")
     public ResponseEntity<String> updateComment(@PathVariable("commentId") Long commentId,
             @RequestBody CommentRequest request) {
         commentService.updateComment(commentId, request);
@@ -53,7 +53,7 @@ public class CommentController {
     }
 
     // IMP : Delete Comment -> deleteComment Service
-    @DeleteMapping("{commentId}")
+    @DeleteMapping("/{commentId}")
     public ResponseEntity<String> deleteComment(@PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("댓글 삭제를 성공적으로 완료 ✅");
