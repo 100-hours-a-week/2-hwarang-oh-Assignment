@@ -1,4 +1,4 @@
-package com.ktb.community.external.jwt;
+package com.ktb.community.external.jwt.service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

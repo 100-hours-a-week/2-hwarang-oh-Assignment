@@ -11,9 +11,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.ktb.community.external.jwt.JwtService;
 import com.ktb.community.domain.user.model.entity.User;
 import com.ktb.community.domain.user.repository.UserRepository;
+import com.ktb.community.external.jwt.service.JwtService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.FilterChain;

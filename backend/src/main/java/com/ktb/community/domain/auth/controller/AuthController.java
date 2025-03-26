@@ -1,5 +1,6 @@
 package com.ktb.community.domain.auth.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,20 +30,20 @@ public class AuthController {
     // IMP : Login -> login Service
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
-        return ResponseEntity.ok(authService.login(loginRequest, response));
+        return ResponseEntity.status(HttpStatus.OK).body(authService.login(loginRequest, response));
     }
 
     // IMP : Refresh -> refresh Service
     @PostMapping("/refresh")
     public ResponseEntity<String> refresh(@RequestParam("userId") Long userId, HttpServletResponse response) {
         authService.refresh(userId, response);
-        return ResponseEntity.ok("토큰 갱신 성공 ✅");
+        return ResponseEntity.status(HttpStatus.OK).body("토큰 갱신 성공 ✅");
     }
 
     // IMP : Logout -> logout Service
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestParam("userId") Long userId, HttpServletResponse response) {
         authService.logout(userId, response);
-        return ResponseEntity.ok("로그아웃 성공 ✅");
+        return ResponseEntity.status(HttpStatus.OK).body("로그아웃 성공 ✅");
     }
 }

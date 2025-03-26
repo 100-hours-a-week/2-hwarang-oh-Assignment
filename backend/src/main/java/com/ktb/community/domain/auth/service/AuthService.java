@@ -8,10 +8,8 @@ import com.ktb.community.domain.user.model.entity.User;
 import com.ktb.community.domain.auth.model.dto.LoginRequest;
 import com.ktb.community.domain.auth.model.dto.LoginResponse;
 import com.ktb.community.domain.user.repository.UserRepository;
-
-import com.ktb.community.external.jwt.JwtService;
-import com.ktb.community.external.redis.RedisRepository;
-
+import com.ktb.community.external.jwt.service.JwtService;
+import com.ktb.community.external.redis.repository.RedisRepository;
 import com.ktb.community.global.util.PasswordUtil;
 import com.ktb.community.global.exception.ErrorCode;
 import com.ktb.community.global.exception.BaseException;
