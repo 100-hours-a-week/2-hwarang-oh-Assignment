@@ -48,7 +48,8 @@ public enum ErrorCode {
      * TYPE : [500 INTERNAL SERVER ERROR]
      * ? Server에 오류가 발생하여, 요청을 수행할 수 없음
      */
-    SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, ErrorMessage.SERVER_ERROR_MESSAGE);
+    SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, ErrorMessage.SERVER_ERROR_MESSAGE),
+    FAIL_TO_ISSUE_TOKEN(HttpStatus.INTERNAL_SERVER_ERROR, ErrorMessage.FAIL_TO_ISSUE_TOKEN_MESSAGE);
 
     private final HttpStatus status;
     private final String message;
