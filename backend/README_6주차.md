@@ -219,16 +219,73 @@ KTB Community는 사용자들이 자유롭게 글을 작성하고, 댓글을 남
 
 ## 🛠 프로그램 실행 방법
 
-1. **프로젝트 다운로드 및 의존성 설치 (Node.js 필요)**
-   ```bash
-   git clone https://github.com/100-hours-a-week/2-hwarang-oh-Assignment.git
-   cd community
-   npm install
-   ```
-2. **프로그램 실행**
-   ```bash
-   npm start
-   ```
+1.  **프로젝트 다운로드 및 의존성 설치 (Spring Boot 3.4.3, Java 21)**
+    ```bash
+    git clone https://github.com/100-hours-a-week/2-hwarang-oh-Assignment.git
+    cd backend
+    ./gradlew clean build
+    ```
+2.  **application.yml 설정 확인**
+    <details>
+      <summary class="small-class">🔎 yml 설정 확인하기</summary>
+       
+       ```groovy
+    server:
+        port: 8080
+    spring:
+        application:
+          name: backend
+        output:
+          ansi:
+            enabled: always
+
+        datasource:
+          url: jdbc:mysql://localhost:3306/ktb_community
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: your-username
+          password: your-password
+
+        jpa:
+          database-platform: org.hibernate.dialect.MySQLDialect
+          hibernate:
+            ddl-auto: update
+          show-sql: true
+
+        data:
+          redis:
+          host: localhost
+          port: 6379
+
+    jwt:
+    secret: your-secret
+    expiration:
+    access: 3600000
+    refresh: 604800000
+
+    aws:
+    region: your-region
+    s3:
+    bucket : your-bucket
+    duration: 900
+    credential:
+    accessKey: your-accessKey
+    secretKey: your-secretKey
+
+    ```
+    </details>
+
+    ```
+
+3.  **Redis 동작 확인**
+
+    ```bash
+    docker run --name redis -p 6379:6379 -d redis
+    ```
+
+4.  **프로그램 실행**
+    ```bash
+    ./gradlew bootRun
+    ```
 
 ## 🚀 추후 계획
 
@@ -250,12 +307,12 @@ KTB Community는 사용자들이 자유롭게 글을 작성하고, 댓글을 남
 
 <style>
 summary {
-  font-size: 1.5em;
-  font-weight: bold; 
+font-size: 1.5em;
+font-weight: bold;
 }
 
 summary.small-class {
-  font-size: 1em;
-  font-weight: bold;
+font-size: 1em;
+font-weight: bold;
 }
 </style>
