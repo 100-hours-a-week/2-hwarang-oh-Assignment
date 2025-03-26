@@ -28,7 +28,6 @@ public class UserService {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new BaseException(ErrorCode.DUPLICATED_EMAIL);
         }
-        request.setPassword(PasswordUtil.encode(request.getPassword()));
         userRepository.save(request);
     }
 

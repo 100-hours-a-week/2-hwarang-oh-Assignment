@@ -3,10 +3,8 @@ package com.ktb.community.domain.user.model.dto;
 import com.ktb.community.domain.user.model.entity.User;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class UserResponse {
     private Long id;
     private String email;

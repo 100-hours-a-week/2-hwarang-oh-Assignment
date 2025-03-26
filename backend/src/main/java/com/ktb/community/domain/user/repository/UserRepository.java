@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.ktb.community.domain.user.model.entity.User;
+import com.ktb.community.global.util.PasswordUtil;
 import com.ktb.community.domain.user.model.dto.UserUpdateRequest;
 import com.ktb.community.domain.user.model.dto.UserRegisterRequest;
 
@@ -46,7 +47,8 @@ public class UserRepository {
     // TYPE : Create => Insert User
     public void save(UserRegisterRequest request) {
         String query = "INSERT INTO users (nickname, email, password, profile_image_url, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())";
-        jdbcTemplate.update(query, request.getNickname(), request.getEmail(), request.getPassword(),
+        jdbcTemplate.update(query, request.getNickname(), request.getEmail(),
+                PasswordUtil.encode(request.getPassword()),
                 request.getProfileImageUrl());
     }
 

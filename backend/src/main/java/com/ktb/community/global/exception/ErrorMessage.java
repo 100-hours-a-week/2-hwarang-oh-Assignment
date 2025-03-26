@@ -45,6 +45,7 @@ public class ErrorMessage {
      * TYPE : [500 INTERNAL SERVER ERROR]
      * ? Server에 오류가 발생하여, 요청을 수행할 수 없음
      */
-    public static final String SERVER_ERROR_MESSAGE = "서버 오류 발생 🚨";
+    public static final String SERVER_ERROR_MESSAGE = "서버가 아파하고 있습니다..ㅠㅠ 🚨";
+    public static final String FAIL_TO_ISSUE_TOKEN_MESSAGE = "토큰 발급을 실패했습니다. 🚨";
 
 }

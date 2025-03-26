@@ -74,8 +74,8 @@ public class PostController {
     public ResponseEntity<String> likePost(@PathVariable("postId") Long postId, @RequestParam("userId") Long userId) {
         LikeStatus likeStatus = postService.toggleLike(postId, userId);
         if (likeStatus == LikeStatus.UNLIKED)
-            return ResponseEntity.ok("게시물 좋아요 취소 👎");
+            return ResponseEntity.status(HttpStatus.OK).body("게시물 좋아요 취소 👎");
         else
-            return ResponseEntity.ok("게시물 좋아요 👍");
+            return ResponseEntity.status(HttpStatus.OK).body("게시물 좋아요 👍");
     }
 }

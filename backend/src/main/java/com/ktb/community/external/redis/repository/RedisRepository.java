@@ -1,4 +1,4 @@
-package com.ktb.community.external.redis;
+package com.ktb.community.external.redis.repository;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
