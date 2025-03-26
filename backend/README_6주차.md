@@ -257,25 +257,22 @@ KTB Community는 사용자들이 자유롭게 글을 작성하고, 댓글을 남
           port: 6379
 
     jwt:
-    secret: your-secret
-    expiration:
-    access: 3600000
-    refresh: 604800000
+        secret: your-secret
+        expiration:
+          access: 3600000
+          refresh: 604800000
 
     aws:
-    region: your-region
-    s3:
-    bucket : your-bucket
-    duration: 900
-    credential:
-    accessKey: your-accessKey
-    secretKey: your-secretKey
+        region: your-region
+        s3:
+          bucket : your-bucket
+          duration: 900
+        credential:
+          accessKey: your-accessKey
+          secretKey: your-secretKey
 
     ```
     </details>
-
-    ```
-
 3.  **Redis 동작 확인**
 
     ```bash
