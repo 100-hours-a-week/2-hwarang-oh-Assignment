@@ -16,6 +16,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ * IMP : JWT Service
+ */
 @Component
 public class JwtService {
 
@@ -25,6 +28,12 @@ public class JwtService {
         this.jwtProperties = jwtProperties;
     }
 
+    /**
+     * IMP : Generate Access Token
+     * 
+     * @param user
+     * @return
+     */
     public String generateAccessToken(User user) {
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
@@ -36,6 +45,12 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * IMP : Generate Refresh Token
+     * 
+     * @param user
+     * @return
+     */
     public String generateRefreshToken(User user) {
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
@@ -45,6 +60,12 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * IMP : Validate Token
+     * 
+     * @param token
+     * @return
+     */
     public boolean isValidToken(String token) throws JwtException {
         if (token == null) {
             return false;
@@ -62,6 +83,12 @@ public class JwtService {
         }
     }
 
+    /**
+     * IMP : Parse Token
+     * 
+     * @param token
+     * @return
+     */
     public Long parseToken(String token) {
         return Long.parseLong(
                 Jwts.parserBuilder()

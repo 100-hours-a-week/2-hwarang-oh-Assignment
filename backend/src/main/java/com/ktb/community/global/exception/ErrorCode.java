@@ -1,10 +1,10 @@
 package com.ktb.community.global.exception;
 
-import lombok.Getter;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import static com.ktb.community.global.exception.ErrorMessage.*;
+
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)

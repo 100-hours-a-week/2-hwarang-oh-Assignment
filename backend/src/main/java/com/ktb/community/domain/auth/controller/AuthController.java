@@ -13,6 +13,10 @@ import com.ktb.community.domain.auth.service.AuthService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * IMP : Auth Controller ( REST API )
+ * TYPE : EndPoint : /auth
+ */
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -22,17 +26,20 @@ public class AuthController {
         this.authService = authService;
     }
 
+    // IMP : Login -> login Service
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
         return ResponseEntity.ok(authService.login(loginRequest, response));
     }
 
+    // IMP : Refresh -> refresh Service
     @PostMapping("/refresh")
     public ResponseEntity<String> refresh(@RequestParam("userId") Long userId, HttpServletResponse response) {
         authService.refresh(userId, response);
         return ResponseEntity.ok("토큰 갱신 성공 ✅");
     }
 
+    // IMP : Logout -> logout Service
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestParam("userId") Long userId, HttpServletResponse response) {
         authService.logout(userId, response);
