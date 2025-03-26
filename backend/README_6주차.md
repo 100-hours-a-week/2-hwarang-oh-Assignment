@@ -301,15 +301,3 @@ KTB Community는 사용자들이 자유롭게 글을 작성하고, 댓글을 남
 ### 🌐 **프론트엔드 연동**
 
 - 실제 프론트 연동을 통해 UX 흐름 검증 예정
-
-<style>
-summary {
-font-size: 1.5em;
-font-weight: bold;
-}
-
-summary.small-class {
-font-size: 1em;
-font-weight: bold;
-}
-</style>
